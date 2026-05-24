@@ -1,0 +1,6 @@
+.kilo/
+.env
+*.csv
+*.env
+node_modules/
+.DS_Store
