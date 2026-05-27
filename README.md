@@ -68,12 +68,13 @@ Templates are in `assets/data/templates/`. Each file has a specific structure:
 | `Output` | No | Output type: Article, Dashboard, etc |
 | `Year` | Yes | 4-digit year (e.g., 2024) |
 | `Description` | No | Brief project description |
+| `Details` | No | Additional details (pipe-separated) |
 | `Link` | No | URL to project |
 | `Image` | No | Leave empty for auto-generated |
 
 ```csv
-Name;Company;Role;Task;Tools;Output;Year;Description;Link;Image
-E-commerce Dashboard;Personal;Data Analyst;Data Visualization;Python|SQL|Tableau;Dashboard;2024;Sales analysis dashboard with Tableau;;
+Name;Company;Role;Task;Tools;Output;Year;Description;Details;Link;Image
+E-commerce Dashboard;Personal;Data Analyst;Data Visualization;Python|SQL|Tableau;Dashboard;2024;Sales analysis dashboard;Sales performance tracking|Regional analysis;;
 ```
 
 #### 2. Technical Skills

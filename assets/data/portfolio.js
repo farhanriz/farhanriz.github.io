@@ -15,6 +15,7 @@ const portfolio = {
             title: "[Article] DRY Metadata: Save Time on dbt Documentation with Doc Blocks",
             year: 2026,
             description: "Article about using Doc Blocks in dbt for better documentation",
+            details: "How to use dbt doc blocks to DRY your project documentation",
             tags: {
                 task: ['Data Analysis', 'Data Governance'],
                 tools: ['dbt'],
@@ -27,18 +28,20 @@ const portfolio = {
             title: "West Java Occupation Data Marts using dbt",
             year: 2025,
             description: "Data mart development using dbt for occupation data",
+            details: "Built dbt models for occupation data with data quality tests and documentation",
             tags: {
                 task: ['Data Analysis', 'Data Management'],
                 tools: ['SQL', 'Visual Studio Code', 'dbt'],
                 output: ['Dashboard']
             },
-            link: "",
+            link: "https://github.com/example/repo",
             image: "https://picsum.photos/400/250?random=11"
         },
         {
             title: "Hotline Dashboard",
             year: 2024,
             description: "Customer service hotline analytics dashboard",
+            details: "Interactive dashboard for monitoring hotline performance metrics",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['SQL', 'Tableau'],
@@ -51,6 +54,7 @@ const portfolio = {
             title: "The Look Ecommerce Dashboard",
             year: 2024,
             description: "Ecommerce analytics using The Look dataset",
+            details: "Sales and customer behavior analysis with Looker",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['BigQuery', 'Looker'],
@@ -63,6 +67,7 @@ const portfolio = {
             title: "Superstore Dashboard",
             year: 2024,
             description: "Retail analytics dashboard using Superstore dataset",
+            details: "Sales performance tracking across regions with Power BI",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Power BI'],
@@ -75,18 +80,20 @@ const portfolio = {
             title: "DBScan Clustering for Spatial Point Data",
             year: 2023,
             description: "Spatial clustering analysis using DBSCAN algorithm",
+            details: "Implementing DBSCAN for point pattern analysis in QGIS",
             tags: {
                 task: ['Data Analysis', 'Spatial Analysis', 'GIS Analysis'],
                 tools: ['Python', 'QGIS'],
                 output: ['Article']
             },
-            link: "",
+            link: "https://github.com/example/dbscan",
             image: "https://picsum.photos/400/250?random=15"
         },
         {
             title: "DataCo Dashboard Report",
             year: 2023,
             description: "Supply chain analytics dashboard for DataCo dataset",
+            details: "Supply chain KPIs and inventory analysis with Tableau",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Tableau'],
@@ -99,6 +106,7 @@ const portfolio = {
             title: "Interactive Visualization - Tourism Dashboard",
             year: 2023,
             description: "Tourism data visualization and dashboard",
+            details: "Interactive tourism statistics with storypoints in Tableau",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Tableau'],
@@ -111,42 +119,46 @@ const portfolio = {
             title: "K-Modes Clustering Sapawarga App User",
             year: 2022,
             description: "User clustering analysis for Sapawarga application",
+            details: "K-Modes algorithm for categorical data clustering",
             tags: {
                 task: ['Data Analysis'],
                 tools: ['Python', 'SQL'],
                 output: ['Article']
             },
-            link: "",
+            link: "https://github.com/example/kmeans",
             image: "https://picsum.photos/400/250?random=18"
         },
         {
             title: "West Java Covid-19 Vaccination Analysis",
             year: 2021,
             description: "Covid-19 vaccination coverage analysis for West Java",
+            details: "Vaccination coverage mapping and demographic analysis",
             tags: {
                 task: ['Data Analysis'],
                 tools: ['Python', 'SQL', 'Sheets'],
                 output: ['Article']
             },
-            link: "",
+            link: "https://github.com/example/covid",
             image: "https://picsum.photos/400/250?random=19"
         },
         {
             title: "Peta Potensi Risiko Penularan Covid-19 Jawa Barat",
             year: 2021,
             description: "Risk mapping of Covid-19 transmission potential in West Java",
+            details: "Spatial risk assessment using GIS and Python",
             tags: {
                 task: ['Data Analysis', 'Spatial Analysis', 'GIS Analysis'],
                 tools: ['Python', 'QGIS', 'SQL'],
                 output: ['Article']
             },
-            link: "",
+            link: "https://github.com/example/gis-covid",
             image: "https://picsum.photos/400/250?random=20"
         },
         {
             title: "Visual Storyboards for West Java Open Data Interactive Visualizations",
             year: 2021,
             description: "Interactive storyboards for West Java open data",
+            details: "Open data portal visualization storyboards",
             tags: {
                 task: ['Data Visualization'],
                 tools: [],
@@ -158,7 +170,8 @@ const portfolio = {
         {
             title: "West Java Active Covid-19 Cases Proportion",
             year: 2021,
-            description: "Analysis of active Covid-19 cases proportion in West Java",
+            description: "Analysis of active Covid-19 cases proportion in West java",
+            details: "COVID case proportion analysis across districts",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Tableau'],
@@ -171,12 +184,13 @@ const portfolio = {
             title: "Spatial Data Integration of Administrative Region Based on GIS",
             year: 2020,
             description: "GIS-based spatial data integration for administrative regions",
+            details: "Admin boundary integration and spatial data harmonization",
             tags: {
                 task: ['Spatial Analysis', 'GIS Analysis'],
                 tools: ['QGIS', 'SQL'],
                 output: ['Article']
             },
-            link: "",
+            link: "https://github.com/example/gis-integration",
             image: "https://picsum.photos/400/250?random=23"
         },
     ],

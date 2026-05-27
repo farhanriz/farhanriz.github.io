@@ -40,11 +40,13 @@ def generate_projects(csv_filename, use_sheets=False):
         tools = parse_list_field(row.get('Tools', ''))
         output = parse_list_field(row.get('Output', ''))
         description = row.get('Description', '')
+        details = row.get('Details', '')
         link = row.get('Link', '')
         projects.append({
             'title': title,
             'year': year,
             'description': description,
+            'details': details,
             'tags': {
                 'task': task,
                 'tools': tools,
@@ -187,6 +189,7 @@ def format_js(portfolio):
         lines.append(f'            title: "{project["title"]}",')
         lines.append(f'            year: {project["year"]},')
         lines.append(f'            description: "{project["description"]}",')
+        lines.append(f'            details: "{project.get("details", "")}",')
         lines.append('            tags: {')
         lines.append(f'                task: {str(project["tags"]["task"])},')
         lines.append(f'                tools: {str(project["tags"]["tools"])},')
