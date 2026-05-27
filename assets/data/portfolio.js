@@ -15,33 +15,33 @@ const portfolio = {
             title: "[Article] DRY Metadata: Save Time on dbt Documentation with Doc Blocks",
             year: 2026,
             description: "Article about using Doc Blocks in dbt for better documentation",
-            details: "How to use dbt doc blocks to DRY your project documentation",
+            details: "Use dbt Doc Blocks for reusable documentation|How to organize metadata in dbt|https://medium.com/towards-data-engineering/dry-metadata-on-dbt-documentation-with-doc-blocks-ff62f8f90ae6",
             tags: {
                 task: ['Data Analysis', 'Data Governance'],
                 tools: ['dbt'],
                 output: ['Article']
             },
-            link: "https://medium.com/towards-data-engineering/dry-metadata-on-dbt-documentation-with-doc-blocks-ff62f8f90ae6",
+            link: "",
             image: "https://picsum.photos/400/250?random=10"
         },
         {
             title: "West Java Occupation Data Marts using dbt",
             year: 2025,
             description: "Data mart development using dbt for occupation data",
-            details: "Built dbt models for occupation data with data quality tests and documentation",
+            details: "Built dbt models for occupation data|Data quality tests documentation|https://github.com/example/repo",
             tags: {
                 task: ['Data Analysis', 'Data Management'],
                 tools: ['SQL', 'Visual Studio Code', 'dbt'],
                 output: ['Dashboard']
             },
-            link: "https://github.com/example/repo",
+            link: "",
             image: "https://picsum.photos/400/250?random=11"
         },
         {
             title: "Hotline Dashboard",
             year: 2024,
             description: "Customer service hotline analytics dashboard",
-            details: "Interactive dashboard for monitoring hotline performance metrics",
+            details: "Interactive dashboard for monitoring hotline performance metrics|Real-time data refresh",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['SQL', 'Tableau'],
@@ -54,7 +54,7 @@ const portfolio = {
             title: "The Look Ecommerce Dashboard",
             year: 2024,
             description: "Ecommerce analytics using The Look dataset",
-            details: "Sales and customer behavior analysis with Looker",
+            details: "Sales and customer behavior analysis|Product performance tracking",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['BigQuery', 'Looker'],
@@ -67,7 +67,7 @@ const portfolio = {
             title: "Superstore Dashboard",
             year: 2024,
             description: "Retail analytics dashboard using Superstore dataset",
-            details: "Sales performance tracking across regions with Power BI",
+            details: "Sales performance tracking across regions|Regional comparison analysis",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Power BI'],
@@ -80,7 +80,7 @@ const portfolio = {
             title: "DBScan Clustering for Spatial Point Data",
             year: 2023,
             description: "Spatial clustering analysis using DBSCAN algorithm",
-            details: "Implementing DBSCAN for point pattern analysis in QGIS",
+            details: "Implementing DBSCAN algorithm|Point pattern analysis in QGIS",
             tags: {
                 task: ['Data Analysis', 'Spatial Analysis', 'GIS Analysis'],
                 tools: ['Python', 'QGIS'],
@@ -93,7 +93,7 @@ const portfolio = {
             title: "DataCo Dashboard Report",
             year: 2023,
             description: "Supply chain analytics dashboard for DataCo dataset",
-            details: "Supply chain KPIs and inventory analysis with Tableau",
+            details: "Supply chain KPIs and inventory analysis|Tableau storypoints",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Tableau'],
@@ -106,7 +106,7 @@ const portfolio = {
             title: "Interactive Visualization - Tourism Dashboard",
             year: 2023,
             description: "Tourism data visualization and dashboard",
-            details: "Interactive tourism statistics with storypoints in Tableau",
+            details: "Interactive tourism statistics|Storypoints for presentation",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Tableau'],
@@ -119,7 +119,7 @@ const portfolio = {
             title: "K-Modes Clustering Sapawarga App User",
             year: 2022,
             description: "User clustering analysis for Sapawarga application",
-            details: "K-Modes algorithm for categorical data clustering",
+            details: "K-Modes algorithm for categorical data|User segmentation analysis",
             tags: {
                 task: ['Data Analysis'],
                 tools: ['Python', 'SQL'],
@@ -132,7 +132,7 @@ const portfolio = {
             title: "West Java Covid-19 Vaccination Analysis",
             year: 2021,
             description: "Covid-19 vaccination coverage analysis for West Java",
-            details: "Vaccination coverage mapping and demographic analysis",
+            details: "Vaccination coverage mapping|Demographic analysis",
             tags: {
                 task: ['Data Analysis'],
                 tools: ['Python', 'SQL', 'Sheets'],
@@ -145,7 +145,7 @@ const portfolio = {
             title: "Peta Potensi Risiko Penularan Covid-19 Jawa Barat",
             year: 2021,
             description: "Risk mapping of Covid-19 transmission potential in West Java",
-            details: "Spatial risk assessment using GIS and Python",
+            details: "Spatial risk assessment|GIS visualization with Python",
             tags: {
                 task: ['Data Analysis', 'Spatial Analysis', 'GIS Analysis'],
                 tools: ['Python', 'QGIS', 'SQL'],
@@ -158,7 +158,7 @@ const portfolio = {
             title: "Visual Storyboards for West Java Open Data Interactive Visualizations",
             year: 2021,
             description: "Interactive storyboards for West Java open data",
-            details: "Open data portal visualization storyboards",
+            details: "Open data portal visualization|Interactive storyboards",
             tags: {
                 task: ['Data Visualization'],
                 tools: [],
@@ -171,7 +171,7 @@ const portfolio = {
             title: "West Java Active Covid-19 Cases Proportion",
             year: 2021,
             description: "Analysis of active Covid-19 cases proportion in West java",
-            details: "COVID case proportion analysis across districts",
+            details: "COVID case proportion analysis|District-level breakdown",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Tableau'],
@@ -184,7 +184,7 @@ const portfolio = {
             title: "Spatial Data Integration of Administrative Region Based on GIS",
             year: 2020,
             description: "GIS-based spatial data integration for administrative regions",
-            details: "Admin boundary integration and spatial data harmonization",
+            details: "Admin boundary integration|Spatial data harmonization",
             tags: {
                 task: ['Spatial Analysis', 'GIS Analysis'],
                 tools: ['QGIS', 'SQL'],

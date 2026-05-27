@@ -267,15 +267,34 @@ function openProjectDetail(project, card) {
     document.getElementById('detail-image').src = project.image;
     document.getElementById('detail-year').textContent = project.year || '';
     document.getElementById('detail-title').textContent = project.title;
-    document.getElementById('detail-description').textContent = project.description || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+    document.getElementById('detail-description').textContent = project.description || '';
+
+    const detailsContainer = document.getElementById('detail-details');
+    if (project.details) {
+        const detailsList = project.details.split('|').filter(d => d.trim());
+        if (detailsList.length > 0) {
+            detailsContainer.innerHTML = '<ul class="detail-details-list">' +
+                detailsList.map(d => '<li>' + d + '</li>').join('') +
+                '</ul>';
+            detailsContainer.style.display = 'block';
+        } else {
+            detailsContainer.style.display = 'none';
+        }
+    } else {
+        detailsContainer.style.display = 'none';
+    }
 
     const tagsContainer = document.getElementById('detail-tags');
     tagsContainer.innerHTML = tagOrder.map(category => {
         const tags = project.tags[category] || [];
         if (tags.length === 0) return '';
-        return '<div class="detail-tag-group"><span class="detail-tag-label">' + category.charAt(0).toUpperCase() + category.slice(1) + '</span><div class="detail-tag-values">' +
+        let html = '<div class="detail-tag-group"><span class="detail-tag-label">' + category.charAt(0).toUpperCase() + category.slice(1) + '</span><div class="detail-tag-values">' +
             tags.map(tag => '<span class="tag tag-' + category + '">' + tag + '</span>').join('') +
             '</div></div>';
+        if (category === 'output' && project.link) {
+            html += '<a href="' + project.link + '" class="detail-output-link" target="_blank">See the result here</a>';
+        }
+        return html;
     }).join('');
 }
 
