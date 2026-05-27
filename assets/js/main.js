@@ -1,7 +1,19 @@
-let activeTag = null;
-let activeCategory = null;
 let currentSkillTab = 'task';
 let currentFilteredProjects = [];
+let activeFilters = {
+    task: [],
+    tools: [],
+    soft: [],
+    output: [],
+    year: []
+};
+let dropdownOpen = {
+    task: false,
+    tools: false,
+    output: false,
+    year: false
+};
+let selectedProject = null;
 
 const tagOrder = ['output', 'tools', 'task'];
 
@@ -31,6 +43,14 @@ function getAllTags() {
         if (catA !== catB) return tagOrder.indexOf(catA) - tagOrder.indexOf(catB);
         return a.localeCompare(b);
     });
+}
+
+function getTagsByCategory(category) {
+    const tagSet = new Set();
+    portfolio.projects.forEach(project => {
+        (project.tags[category] || []).forEach(tag => tagSet.add(tag));
+    });
+    return [...tagSet].sort();
 }
 
 function getTagCategory(tag) {
@@ -68,18 +88,206 @@ function renderSkills() {
     const content = document.getElementById('skills-content');
     const skills = portfolio.skills[currentSkillTab] || [];
     content.innerHTML = skills.map(skill => `
-        <span class="skill-tag clickable" data-tag="${skill}" data-category="${currentSkillTab}">${skill}</span>
+        <span class="skill-tag clickable ${activeFilters[currentSkillTab].includes(skill) ? 'active' : ''}" data-tag="${skill}" data-category="${currentSkillTab}">${skill}</span>
     `).join('');
 
     content.querySelectorAll('.skill-tag').forEach(skill => {
-        skill.addEventListener('click', () => {
-            activeTag = skill.dataset.tag;
-            activeCategory = skill.dataset.category;
-            renderTags();
-            renderProjects();
-            document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+        skill.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const tag = skill.dataset.tag;
+            const category = skill.dataset.category;
+            toggleFilter(category, tag);
         });
     });
+}
+
+function toggleFilter(category, tag) {
+    const filters = activeFilters[category];
+    const idx = filters.indexOf(tag);
+    if (idx === -1) {
+        filters.push(tag);
+    } else {
+        filters.splice(idx, 1);
+    }
+    updateClearFiltersButton();
+    renderSelectedTagsDisplay();
+    renderSkills();
+    renderAllDropdowns();
+    renderProjects();
+}
+
+function clearAllFilters() {
+    activeFilters = {
+        task: [],
+        tools: [],
+        soft: [],
+        output: [],
+        year: []
+    };
+    updateClearFiltersButton();
+    renderSelectedTagsDisplay();
+    renderSkills();
+    renderAllDropdowns();
+    renderProjects();
+    closeProjectDetail();
+}
+
+function getUniqueYears() {
+    const years = portfolio.projects.map(p => p.year).filter(y => y);
+    return [...new Set(years)].sort((a, b) => b - a);
+}
+
+function updateClearFiltersButton() {
+    const clearBtn = document.getElementById('clear-filters');
+    const hasFilters = activeFilters.task.length > 0 ||
+                       activeFilters.tools.length > 0 ||
+                       activeFilters.soft.length > 0 ||
+                       activeFilters.output.length > 0 ||
+                       activeFilters.year.length > 0;
+    clearBtn.style.display = hasFilters ? 'block' : 'none';
+}
+
+function renderSelectedTagsDisplay() {
+    const container = document.getElementById('selected-tags-display');
+    if (!container) return;
+
+    const categories = ['task', 'tools', 'soft', 'output', 'year'];
+    const labels = { task: 'Task', tools: 'Tools', soft: 'Soft', output: 'Output', year: 'Year' };
+    const tagColors = { task: 'tag-task', tools: 'tag-tools', soft: 'tag-soft', output: 'tag-output', year: 'tag-year' };
+
+    let html = '';
+    categories.forEach(category => {
+        const tags = activeFilters[category];
+        if (tags.length > 0) {
+            html += '<div class="selected-tag-group">';
+            html += '<span class="tag-label">' + labels[category] + ':</span>';
+            tags.forEach(tag => {
+                html += '<span class="tag ' + tagColors[category] + '" data-category="' + category + '" data-tag="' + tag + '">' + tag + '<span class="tag-remove" data-category="' + category + '" data-tag="' + tag + '">×</span></span>';
+            });
+            html += '</div>';
+        }
+    });
+
+    console.log('Selected tags HTML:', html);
+    container.innerHTML = html;
+
+    container.querySelectorAll('.tag-remove').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const category = btn.dataset.category;
+            const tag = btn.dataset.tag;
+            toggleFilter(category, tag);
+        });
+    });
+}
+
+function renderFilterDropdown(category) {
+    const container = document.getElementById(category + '-dropdown');
+    if (!container) return;
+
+    const tags = category === 'year' ? getUniqueYears() : getTagsByCategory(category);
+    const selected = activeFilters[category];
+    const labelMap = { task: 'Task', tools: 'Tools', soft: 'Soft', output: 'Output', year: 'Year' };
+    const colorMap = { task: '#0A2472', tools: '#10b981', soft: '#8b5cf6', output: '#f59e0b', year: '#6366f1' };
+
+    container.innerHTML = '<div class="dropdown-wrapper">' +
+        '<button class="dropdown-toggle ' + (selected.length > 0 ? 'active' : '') + '" data-category="' + category + '" style="--dropdown-color: ' + colorMap[category] + '">' +
+        labelMap[category] + (selected.length > 0 ? ' (' + selected.length + ')' : '') +
+        '<svg class="dropdown-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>' +
+        '</button>' +
+        '<div class="dropdown-content" data-category="' + category + '">' +
+        (category === 'year'
+            ? tags.map(year => '<label class="dropdown-option"><input type="checkbox" class="dropdown-checkbox" value="' + year + '"' + (selected.includes(year) ? ' checked' : '') + '>' + year + '</label>').join('')
+            : tags.map(tag => '<label class="dropdown-option"><input type="checkbox" class="dropdown-checkbox" value="' + tag + '"' + (selected.includes(tag) ? ' checked' : '') + '>' + tag + '</label>').join('')
+        ) +
+        '</div>' +
+        '</div>';
+
+    const toggleBtn = container.querySelector('.dropdown-toggle');
+    const dropdownContent = container.querySelector('.dropdown-content');
+
+    toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownOpen[category] = !dropdownOpen[category];
+        document.querySelectorAll('.dropdown-content').forEach(d => {
+            if (d !== dropdownContent) d.classList.remove('show');
+        });
+        dropdownContent.classList.toggle('show', dropdownOpen[category]);
+        toggleBtn.querySelector('.dropdown-arrow').style.transform = dropdownOpen[category] ? 'rotate(180deg)' : '';
+    });
+
+    dropdownContent.querySelectorAll('.dropdown-checkbox').forEach(cb => {
+        cb.addEventListener('change', (e) => {
+            e.stopPropagation();
+            const value = category === 'year' ? parseInt(cb.value) : cb.value;
+            const idx = activeFilters[category].indexOf(value);
+            if (cb.checked) {
+                if (idx === -1) activeFilters[category].push(value);
+            } else {
+                if (idx !== -1) activeFilters[category].splice(idx, 1);
+            }
+            updateClearFiltersButton();
+            renderSelectedTagsDisplay();
+            renderAllDropdowns();
+            renderProjects();
+        });
+    });
+}
+
+function renderAllDropdowns() {
+    renderFilterDropdown('task');
+    renderFilterDropdown('tools');
+    renderFilterDropdown('soft');
+    renderFilterDropdown('output');
+    renderFilterDropdown('year');
+    setupDropdownCloseListeners();
+}
+
+function setupDropdownCloseListeners() {
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.dropdown-content.show').forEach(d => {
+            d.classList.remove('show');
+        });
+        dropdownOpen = { task: false, tools: false, output: false, year: false };
+    });
+}
+
+function openProjectDetail(project, card) {
+    selectedProject = project;
+
+    const container = document.getElementById('projects-container');
+    container.classList.add('show-detail');
+
+    document.querySelector('.project-detail-placeholder').style.display = 'none';
+    document.getElementById('project-detail-content').style.display = 'block';
+
+    document.querySelectorAll('.card.selected-project').forEach(c => c.classList.remove('selected-project'));
+    card.classList.add('selected-project');
+
+    document.getElementById('detail-image').src = project.image;
+    document.getElementById('detail-year').textContent = project.year || '';
+    document.getElementById('detail-title').textContent = project.title;
+    document.getElementById('detail-description').textContent = project.description || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.';
+
+    const tagsContainer = document.getElementById('detail-tags');
+    tagsContainer.innerHTML = tagOrder.map(category => {
+        const tags = project.tags[category] || [];
+        if (tags.length === 0) return '';
+        return '<div class="detail-tag-group"><span class="detail-tag-label">' + category.charAt(0).toUpperCase() + category.slice(1) + '</span><div class="detail-tag-values">' +
+            tags.map(tag => '<span class="tag tag-' + category + '">' + tag + '</span>').join('') +
+            '</div></div>';
+    }).join('');
+}
+
+function closeProjectDetail() {
+    selectedProject = null;
+    const container = document.getElementById('projects-container');
+    container.classList.remove('show-detail');
+
+    document.querySelector('.project-detail-placeholder').style.display = 'flex';
+    document.getElementById('project-detail-content').style.display = 'none';
+
+    document.querySelectorAll('.card.selected-project').forEach(c => c.classList.remove('selected-project'));
 }
 
 function renderProjects() {
@@ -88,11 +296,17 @@ function renderProjects() {
     let filtered = portfolio.projects.filter(project => {
         const matchesSearch = project.title.toLowerCase().includes(search) ||
                              project.description.toLowerCase().includes(search);
-        const matchesTag = !activeTag || Object.values(project.tags).some(tags => tags.includes(activeTag));
-        return matchesSearch && matchesTag;
+
+        const matchesTask = activeFilters.task.length === 0 || activeFilters.task.some(t => project.tags.task.includes(t));
+        const matchesTools = activeFilters.tools.length === 0 || activeFilters.tools.some(t => project.tags.tools.includes(t));
+        const matchesSoft = activeFilters.soft.length === 0 || activeFilters.soft.some(t => (project.tags.soft || []).includes(t));
+        const matchesOutput = activeFilters.output.length === 0 || activeFilters.output.some(t => project.tags.output.includes(t));
+        const matchesYear = activeFilters.year.length === 0 || (project.year && activeFilters.year.includes(project.year));
+
+        return matchesSearch && matchesTask && matchesTools && matchesSoft && matchesOutput && matchesYear;
     });
 
-    if (!activeTag) {
+    if (activeFilters.task.length === 0 && activeFilters.tools.length === 0 && activeFilters.output.length === 0) {
         filtered.sort((a, b) => {
             const aHasOutput = a.tags.output && a.tags.output.length > 0;
             const bHasOutput = b.tags.output && b.tags.output.length > 0;
@@ -102,90 +316,28 @@ function renderProjects() {
         });
     }
 
-    grid.innerHTML = filtered.map(project => `
-        <div class="card">
-            <img src="${project.image}" alt="${project.title}" class="card-image">
-            <div class="card-body">
-                <h3 class="card-title">${project.title}</h3>
-                <p class="card-description">${project.description}</p>
-                <div class="card-tags">
-                    ${tagOrder.map(category =>
-                        (project.tags[category] || []).map(tag => `<span class="tag tag-${category}" data-tag="${tag}" data-category="${category}">${tag}</span>`).join('')
-                    ).join('')}
-                </div>
-            </div>
-        </div>
-    `).join('');
+    grid.innerHTML = filtered.map((project, index) => {
+        const isSelected = selectedProject === project;
+        return '<div class="card' + (isSelected ? ' selected-project' : '') + '" data-index="' + index + '">' +
+            '<img src="' + project.image + '" alt="' + project.title + '" class="card-image">' +
+            '<div class="card-body">' +
+            '<h3 class="card-title">' + project.title + '</h3>' +
+            (project.year ? '<div class="card-year">' + project.year + '</div>' : '') +
+            '<p class="card-description">' + project.description + '</p>' +
+            '<div class="card-tags">' +
+            tagOrder.map(cat =>
+                (project.tags[cat] || []).map(tag => '<span class="tag tag-' + cat + ' ' + (activeFilters[cat].includes(tag) ? 'active' : '') + '" data-tag="' + tag + '" data-category="' + cat + '">' + tag + '</span>').join('')
+            ).join('') +
+            '</div></div></div>';
+    }).join('');
 
     currentFilteredProjects = filtered;
-
-    document.querySelectorAll('.tag').forEach(tag => {
-        tag.addEventListener('click', (e) => {
-            e.stopPropagation();
-            activeTag = activeTag === tag.dataset.tag ? null : tag.dataset.tag;
-            activeCategory = activeTag ? tag.dataset.category : null;
-            renderTags();
-            renderProjects();
-        });
-    });
-
-    document.querySelectorAll('.card').forEach((card, index) => {
-        card.addEventListener('click', () => {
-            openProjectModal(currentFilteredProjects[index]);
-        });
-    });
-}
-
-function renderTags() {
-    const allTags = getAllTags();
-    const container = document.getElementById('project-tags');
-    container.innerHTML = allTags.map(tag => {
-        const category = getTagCategory(tag);
-        const isActive = activeTag === tag;
-        return `<button class="tag-filter tag-${category} ${isActive ? 'active' : ''}" data-tag="${tag}" data-category="${category}">
-            ${tag}
-        </button>`;
-    }).join('');
-
-    container.querySelectorAll('button').forEach(btn => {
-        btn.addEventListener('click', () => {
-            activeTag = activeTag === btn.dataset.tag ? null : btn.dataset.tag;
-            activeCategory = activeTag ? btn.dataset.category : null;
-            renderTags();
-            renderProjects();
-        });
-    });
-}
-
-function openProjectModal(project) {
-    const modal = document.getElementById('project-modal');
-    document.getElementById('modal-image').src = project.image;
-    document.getElementById('modal-title').textContent = project.title;
-    document.getElementById('modal-description').textContent = project.description;
-
-    const tagsContainer = document.getElementById('modal-tags');
-    tagsContainer.innerHTML = tagOrder.map(category => {
-        const tags = project.tags[category] || [];
-        if (tags.length === 0) return '';
-        return `
-            <div class="modal-tags-label">${category.charAt(0).toUpperCase() + category.slice(1)}</div>
-            <div class="modal-tags">
-                ${tags.map(tag => `<span class="tag tag-${category}">${tag}</span>`).join('')}
-            </div>
-        `;
-    }).join('');
-
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeProjectModal() {
-    document.getElementById('project-modal').classList.remove('active');
-    document.body.style.overflow = '';
 }
 
 function calculateDuration(startStr, endStr) {
     const months = {
+        'January': 0, 'February': 1, 'March': 2, 'April': 3, 'May': 4, 'June': 5,
+        'July': 6, 'August': 7, 'September': 8, 'October': 9, 'November': 10, 'December': 11,
         'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
         'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
     };
@@ -201,29 +353,30 @@ function calculateDuration(startStr, endStr) {
     const start = parseDate(startStr);
     const endStrLower = endStr.toLowerCase();
     let end;
-    if (endStrLower === 'present' || endStrLower === 'present') {
+    if (endStrLower === 'present') {
         const now = new Date();
         end = { month: now.getMonth(), year: now.getFullYear() };
     } else {
         end = parseDate(endStr);
     }
 
-    let totalMonths = (end.year - start.year) * 12 + (end.month - start.month);
-    if (totalMonths < 0) totalMonths = 0;
+    let totalMonths = (end.year - start.year) * 12 + (end.month - start.month) + 1;
+    if (totalMonths <= 0) totalMonths = 1;
 
-    if (totalMonths < 1) {
+    if (totalMonths < 2) {
         return '1 mo';
     } else if (totalMonths < 12) {
-        return `${totalMonths} mos`;
+        return totalMonths + ' mos';
     } else {
         const years = Math.floor(totalMonths / 12);
         const monthsRemainder = totalMonths % 12;
         if (monthsRemainder === 0) {
-            return `${years} yr${years > 1 ? 's' : ''}`;
+            return years + ' yr' + (years > 1 ? 's' : '');
         } else if (monthsRemainder < 3) {
-            return `${years} yr${years > 1 ? 's' : ''} ${monthsRemainder} mo`;
+            return years + ' yr' + (years > 1 ? 's' : '') + ' ' + monthsRemainder + ' mo';
+        } else {
+            return years + ' yr' + (years > 1 ? 's' : '') + ' ' + monthsRemainder + ' mos';
         }
-        return `${years} yr${years > 1 ? 's' : ''} ${monthsRemainder} mos`;
     }
 }
 
@@ -235,36 +388,27 @@ function renderExperience() {
         const startYear = yearParts[0].trim();
         const endYear = yearParts.length > 1 ? yearParts[1].trim() : 'Present';
         const duration = calculateDuration(startYear, endYear);
-        return `
-        <div class="experience-item" data-expanded="false">
-            <div class="experience-header">
-                <div class="timeline-dot"></div>
-                <div class="experience-summary">
-                    <div class="timeline-date">${exp.year} · ${duration}</div>
-                    <h3 class="timeline-company">${exp.role} at <span class="company-name">${exp.company}</span></h3>
-                    ${exp.companyInfo ? `<p class="experience-company-info">${exp.companyInfo}</p>` : ''}
-                    ${exp.points.length > 0 ? `<p class="experience-summary-text">${exp.points[0]}</p>` : ''}
-                </div>
-                ${exp.points.length > 0 ? `
-                <button class="experience-toggle" aria-label="Toggle details">
-                    <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>` : ''}
-            </div>
-            ${exp.points.length > 0 ? `
-            <div class="experience-details">
-                <ul class="timeline-points">
-                    ${exp.points.map(point => {
-                        if (point.startsWith('Technology:')) {
-                            return `<li><span class="tech-label">${point.split(':')[0]}:</span> ${point.split(':').slice(1).join(':').trim()}</li>`;
-                        }
-                        return `<li>${point}</li>`;
-                    }).join('')}
-                </ul>
-            </div>` : ''}
-        </div>
-        `;
+        return '<div class="experience-item" data-expanded="false">' +
+            '<div class="experience-header">' +
+            '<div class="timeline-dot"></div>' +
+            '<div class="experience-summary">' +
+            '<div class="timeline-date">' + exp.year + ' · ' + duration + '</div>' +
+            '<h3 class="timeline-company">' + exp.role + ' at <span class="company-name">' + exp.company + '</span></h3>' +
+            (exp.companyInfo ? '<p class="experience-company-info">' + exp.companyInfo + '</p>' : '') +
+            (exp.points.length > 0 ? '<p class="experience-summary-text">' + exp.points[0] + '</p>' : '') +
+            '</div>' +
+            (exp.points.length > 0 ? '<button class="experience-toggle" aria-label="Toggle details"><svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>' : '') +
+            '</div>' +
+            (exp.points.length > 0 ? '<div class="experience-details"><ul class="timeline-points">' +
+            exp.points.map(point => {
+                if (point.startsWith('Technology:')) {
+                    const parts = point.split(':');
+                    return '<li><span class="tech-label">' + parts[0] + ':</span> ' + parts.slice(1).join(':').trim() + '</li>';
+                }
+                return '<li>' + point + '</li>';
+            }).join('') +
+            '</ul></div>' : '') +
+            '</div>';
     }).join('');
 
     container.querySelectorAll('.experience-header').forEach(header => {
@@ -280,33 +424,51 @@ function renderExperience() {
     });
 }
 
-document.getElementById('project-modal').addEventListener('click', (e) => {
-    if (e.target.id === 'project-modal') closeProjectModal();
-});
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeProjectModal();
-});
-
 function init() {
     initTheme();
     renderIntro();
     renderProjects();
-    renderTags();
     renderSkills();
     renderExperience();
+    renderAllDropdowns();
+    renderSelectedTagsDisplay();
+    updateClearFiltersButton();
+
+    document.getElementById('projects-grid').addEventListener('click', (e) => {
+        const card = e.target.closest('.card');
+        if (card && !e.target.classList.contains('tag')) {
+            const index = parseInt(card.dataset.index);
+            if (!isNaN(index) && currentFilteredProjects[index]) {
+                openProjectDetail(currentFilteredProjects[index], card);
+            }
+        }
+    });
 
     document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
     document.getElementById('footer-theme-toggle').addEventListener('click', toggleTheme);
     document.getElementById('project-search').addEventListener('input', renderProjects);
 
     document.querySelectorAll('.skill-tab').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
             currentSkillTab = btn.dataset.tab;
             document.querySelectorAll('.skill-tab').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             renderSkills();
         });
+    });
+
+    document.getElementById('clear-filters').addEventListener('click', clearAllFilters);
+    document.getElementById('project-detail-close').addEventListener('click', closeProjectDetail);
+
+    document.addEventListener('click', (e) => {
+        if (!selectedProject) return;
+        const card = e.target.closest('.card');
+        const detail = e.target.closest('.project-detail');
+        if (!card && !detail) {
+            closeProjectDetail();
+        }
     });
 }
 
