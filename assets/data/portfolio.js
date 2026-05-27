@@ -21,7 +21,7 @@ const portfolio = {
                 tools: ['dbt'],
                 output: ['Article']
             },
-            link: "https://medium.com/@rizaldifarhan/example",
+            link: "https://medium.com/towards-data-engineering/dry-metadata-on-dbt-documentation-with-doc-blocks-ff62f8f90ae6",
             image: "https://picsum.photos/400/250?random=10"
         },
         {
