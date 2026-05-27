@@ -4,3 +4,6 @@
 *.env
 node_modules/
 .DS_Store
+credentials.json
+DEVELOPMENT.md
+assets/data/sheets_data/
