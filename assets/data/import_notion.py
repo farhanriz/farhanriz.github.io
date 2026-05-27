@@ -3,11 +3,12 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = BASE_DIR
+SHEETS_DIR = os.path.join(BASE_DIR, 'sheets_data')
 
 def parse_list_field(value):
     if not value:
         return []
-    return [item.strip() for item in value.split(',') if item.strip()]
+    return [item.strip() for item in value.split(';') if item.strip()]
 
 def deduplicate_keep_order(items):
     seen = set()
@@ -18,8 +19,15 @@ def deduplicate_keep_order(items):
             result.append(item)
     return result
 
-def generate_projects(projects_csv):
-    filepath = os.path.join(DATA_DIR, projects_csv)
+def get_csv_path(filename, use_sheets=False):
+    if use_sheets:
+        path = os.path.join(SHEETS_DIR, filename)
+        if os.path.exists(path):
+            return path
+    return os.path.join(DATA_DIR, filename)
+
+def generate_projects(csv_filename, use_sheets=False):
+    filepath = get_csv_path(csv_filename, use_sheets)
     with open(filepath, 'r', encoding='utf-8-sig') as f:
         reader = csv.DictReader(f)
         rows = list(reader)
@@ -30,52 +38,55 @@ def generate_projects(projects_csv):
         year = int(year_str) if year_str.strip().isdigit() else None
         task = parse_list_field(row.get('Task', ''))
         tools = parse_list_field(row.get('Tools', ''))
+        output = parse_list_field(row.get('Output', ''))
+        description = row.get('Description', '')
+        link = row.get('Link', '')
         projects.append({
             'title': title,
             'year': year,
-            'description': '',
+            'description': description,
             'tags': {
                 'task': task,
                 'tools': tools,
-                'output': []
+                'output': output
             },
+            'link': link,
             'image': f'https://picsum.photos/400/250?random={i+10}'
         })
     sorted_projects = sorted(projects, key=lambda x: (x['year'] or 0), reverse=True)
     return sorted_projects
 
-def generate_skills_task(skills_csv):
-    filepath = os.path.join(DATA_DIR, skills_csv)
+def generate_skills_task(skills_csv, use_sheets=False):
+    filepath = get_csv_path(skills_csv, use_sheets)
     with open(filepath, 'r', encoding='utf-8-sig') as f:
-        lines = [line.strip() for line in f if line.strip() and line.strip() != 'Name']
-    return lines
+        reader = csv.DictReader(f)
+        rows = list(reader)
+    return [row.get('Name', '').strip() for row in rows if row.get('Name', '').strip()]
 
-def generate_skills_soft(skills_csv):
-    filepath = os.path.join(DATA_DIR, skills_csv)
+def generate_skills_soft(skills_csv, use_sheets=False):
+    filepath = get_csv_path(skills_csv, use_sheets)
     with open(filepath, 'r', encoding='utf-8-sig') as f:
-        lines = [line.strip() for line in f if line.strip() and line.strip() != 'Name']
-    return lines
+        reader = csv.DictReader(f)
+        rows = list(reader)
+    return [row.get('Name', '').strip() for row in rows if row.get('Name', '').strip()]
 
-def generate_skills_tools(tools_csv):
-    filepath = os.path.join(DATA_DIR, tools_csv)
+def generate_skills_tools(tools_csv, use_sheets=False):
+    filepath = get_csv_path(tools_csv, use_sheets)
     with open(filepath, 'r', encoding='utf-8-sig') as f:
-        lines = [line.strip() for line in f if line.strip()]
-    if not lines:
-        return []
-    header = lines[0].split(',')
-    name_idx = header.index('Name') if 'Name' in header else 0
+        reader = csv.DictReader(f)
+        rows = list(reader)
     tools = []
-    for line in lines[1:]:
-        parts = line.split(',')
-        if parts and parts[name_idx].strip():
-            tools.append(parts[name_idx].strip())
+    for row in rows:
+        name = row.get('Name', '').strip()
+        if name:
+            tools.append(name)
     return deduplicate_keep_order(tools)
 
-def generate_portfolio():
-    projects = generate_projects('Projects 68e0d9fb5920463195135579f661d279_all.csv')
-    skills_task = generate_skills_task('Technical Skills e9cfbe0ce611433f9ce586c6c69aa0cf.csv')
-    skills_soft = generate_skills_soft('Soft Skills 23e6f091e83a41d4abbc6f4d942a9fa7.csv')
-    skills_tools = generate_skills_tools('Tools 1a9ebb5346e346879ecba885b083e177.csv')
+def generate_portfolio(use_sheets=False):
+    projects = generate_projects('projects.csv', use_sheets)
+    skills_task = generate_skills_task('technical_skills.csv', use_sheets)
+    skills_soft = generate_skills_soft('soft_skills.csv', use_sheets)
+    skills_tools = generate_skills_tools('tools.csv', use_sheets)
 
     experiences = [
         {
@@ -181,6 +192,7 @@ def format_js(portfolio):
         lines.append(f'                tools: {str(project["tags"]["tools"])},')
         lines.append(f'                output: {str(project["tags"]["output"])}')
         lines.append('            },')
+        lines.append(f'            link: "{project.get("link", "")}",')
         lines.append(f'            image: "{project["image"]}"')
         lines.append('        },')
     lines.append('    ],')
@@ -206,7 +218,29 @@ def format_js(portfolio):
 
     return '\n'.join(lines)
 
-if __name__ == '__main__':
-    portfolio = generate_portfolio()
+def update_portfolio_from_csv(use_sheets=True, output_file=None):
+    portfolio = generate_portfolio(use_sheets=use_sheets)
     output = format_js(portfolio)
-    print(output)
+
+    if output_file is None:
+        output_file = os.path.join(DATA_DIR, 'portfolio.js')
+
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write(output)
+
+    print(f'Portfolio updated: {output_file}')
+    return portfolio
+
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser(description='Import portfolio data')
+    parser.add_argument('--local', action='store_true', help='Use local CSV files instead of sheets_data')
+    parser.add_argument('--output', type=str, help='Output JS file path')
+    args = parser.parse_args()
+
+    use_sheets = not args.local
+    portfolio = update_portfolio_from_csv(use_sheets=use_sheets, output_file=args.output)
+    print(f'Projects: {len(portfolio["projects"])}')
+    print(f'Skills task: {len(portfolio["skills"]["task"])}')
+    print(f'Skills soft: {len(portfolio["skills"]["soft"])}')
+    print(f'Tools: {len(portfolio["skills"]["tools"])}')
