@@ -53,7 +53,7 @@ def fetch_sheet_data(spreadsheet_id, sheet_name):
 def save_as_csv(data, filepath):
     os.makedirs(os.path.dirname(filepath), exist_ok=True)
     with open(filepath, 'w', newline='', encoding='utf-8-sig') as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, delimiter=';')
         for row in data:
             writer.writerow(row)
     print(f'Saved: {filepath}')

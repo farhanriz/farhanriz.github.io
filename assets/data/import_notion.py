@@ -8,7 +8,7 @@ SHEETS_DIR = os.path.join(BASE_DIR, 'sheets_data')
 def parse_list_field(value):
     if not value:
         return []
-    return [item.strip() for item in value.split(';') if item.strip()]
+    return [item.strip() for item in value.split('|') if item.strip()]
 
 def deduplicate_keep_order(items):
     seen = set()
@@ -29,7 +29,7 @@ def get_csv_path(filename, use_sheets=False):
 def generate_projects(csv_filename, use_sheets=False):
     filepath = get_csv_path(csv_filename, use_sheets)
     with open(filepath, 'r', encoding='utf-8-sig') as f:
-        reader = csv.DictReader(f)
+        reader = csv.DictReader(f, delimiter=';')
         rows = list(reader)
     projects = []
     for i, row in enumerate(rows):
@@ -59,21 +59,21 @@ def generate_projects(csv_filename, use_sheets=False):
 def generate_skills_task(skills_csv, use_sheets=False):
     filepath = get_csv_path(skills_csv, use_sheets)
     with open(filepath, 'r', encoding='utf-8-sig') as f:
-        reader = csv.DictReader(f)
+        reader = csv.DictReader(f, delimiter=';')
         rows = list(reader)
     return [row.get('Name', '').strip() for row in rows if row.get('Name', '').strip()]
 
 def generate_skills_soft(skills_csv, use_sheets=False):
     filepath = get_csv_path(skills_csv, use_sheets)
     with open(filepath, 'r', encoding='utf-8-sig') as f:
-        reader = csv.DictReader(f)
+        reader = csv.DictReader(f, delimiter=';')
         rows = list(reader)
     return [row.get('Name', '').strip() for row in rows if row.get('Name', '').strip()]
 
 def generate_skills_tools(tools_csv, use_sheets=False):
     filepath = get_csv_path(tools_csv, use_sheets)
     with open(filepath, 'r', encoding='utf-8-sig') as f:
-        reader = csv.DictReader(f)
+        reader = csv.DictReader(f, delimiter=';')
         rows = list(reader)
     tools = []
     for row in rows:

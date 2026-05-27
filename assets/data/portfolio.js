@@ -14,162 +14,176 @@ const portfolio = {
         {
             title: "[Article] DRY Metadata: Save Time on dbt Documentation with Doc Blocks",
             year: 2026,
-            description: "",
+            description: "Article about using Doc Blocks in dbt for better documentation",
             tags: {
                 task: ['Data Analysis', 'Data Governance'],
                 tools: ['dbt'],
-                output: []
+                output: ['Article']
             },
-            image: "https://picsum.photos/400/250?random=23"
+            link: "https://medium.com/@rizaldifarhan/example",
+            image: "https://picsum.photos/400/250?random=10"
         },
         {
             title: "West Java Occupation Data Marts using dbt",
             year: 2025,
-            description: "",
+            description: "Data mart development using dbt for occupation data",
             tags: {
                 task: ['Data Analysis', 'Data Management'],
                 tools: ['SQL', 'Visual Studio Code', 'dbt'],
-                output: []
+                output: ['Dashboard']
             },
-            image: "https://picsum.photos/400/250?random=22"
+            link: "",
+            image: "https://picsum.photos/400/250?random=11"
         },
         {
             title: "Hotline Dashboard",
             year: 2024,
-            description: "",
+            description: "Customer service hotline analytics dashboard",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['SQL', 'Tableau'],
-                output: []
+                output: ['Dashboard']
             },
-            image: "https://picsum.photos/400/250?random=19"
+            link: "",
+            image: "https://picsum.photos/400/250?random=12"
         },
         {
             title: "The Look Ecommerce Dashboard",
             year: 2024,
-            description: "",
+            description: "Ecommerce analytics using The Look dataset",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['BigQuery', 'Looker'],
-                output: []
+                output: ['Dashboard']
             },
-            image: "https://picsum.photos/400/250?random=20"
+            link: "",
+            image: "https://picsum.photos/400/250?random=13"
         },
         {
             title: "Superstore Dashboard",
             year: 2024,
-            description: "",
+            description: "Retail analytics dashboard using Superstore dataset",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Power BI'],
-                output: []
+                output: ['Dashboard']
             },
-            image: "https://picsum.photos/400/250?random=21"
+            link: "",
+            image: "https://picsum.photos/400/250?random=14"
         },
         {
             title: "DBScan Clustering for Spatial Point Data",
             year: 2023,
-            description: "",
+            description: "Spatial clustering analysis using DBSCAN algorithm",
             tags: {
                 task: ['Data Analysis', 'Spatial Analysis', 'GIS Analysis'],
                 tools: ['Python', 'QGIS'],
-                output: []
+                output: ['Article']
             },
-            image: "https://picsum.photos/400/250?random=10"
+            link: "",
+            image: "https://picsum.photos/400/250?random=15"
         },
         {
             title: "DataCo Dashboard Report",
             year: 2023,
-            description: "",
+            description: "Supply chain analytics dashboard for DataCo dataset",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Tableau'],
-                output: []
+                output: ['Dashboard']
             },
+            link: "",
             image: "https://picsum.photos/400/250?random=16"
         },
         {
             title: "Interactive Visualization - Tourism Dashboard",
             year: 2023,
-            description: "",
+            description: "Tourism data visualization and dashboard",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Tableau'],
-                output: []
+                output: ['Dashboard']
             },
-            image: "https://picsum.photos/400/250?random=18"
+            link: "",
+            image: "https://picsum.photos/400/250?random=17"
         },
         {
-            title: "K-Modes Clustering Sapawarga App User ",
+            title: "K-Modes Clustering Sapawarga App User",
             year: 2022,
-            description: "",
+            description: "User clustering analysis for Sapawarga application",
             tags: {
                 task: ['Data Analysis'],
                 tools: ['Python', 'SQL'],
-                output: []
+                output: ['Article']
             },
-            image: "https://picsum.photos/400/250?random=13"
+            link: "",
+            image: "https://picsum.photos/400/250?random=18"
         },
         {
             title: "West Java Covid-19 Vaccination Analysis",
             year: 2021,
-            description: "",
+            description: "Covid-19 vaccination coverage analysis for West Java",
             tags: {
                 task: ['Data Analysis'],
                 tools: ['Python', 'SQL', 'Sheets'],
-                output: []
+                output: ['Article']
             },
-            image: "https://picsum.photos/400/250?random=11"
+            link: "",
+            image: "https://picsum.photos/400/250?random=19"
         },
         {
             title: "Peta Potensi Risiko Penularan Covid-19 Jawa Barat",
             year: 2021,
-            description: "",
+            description: "Risk mapping of Covid-19 transmission potential in West Java",
             tags: {
                 task: ['Data Analysis', 'Spatial Analysis', 'GIS Analysis'],
                 tools: ['Python', 'QGIS', 'SQL'],
-                output: []
+                output: ['Article']
             },
-            image: "https://picsum.photos/400/250?random=12"
+            link: "",
+            image: "https://picsum.photos/400/250?random=20"
         },
         {
             title: "Visual Storyboards for West Java Open Data Interactive Visualizations",
             year: 2021,
-            description: "",
+            description: "Interactive storyboards for West Java open data",
             tags: {
                 task: ['Data Visualization'],
                 tools: [],
-                output: []
+                output: ['Dashboard']
             },
-            image: "https://picsum.photos/400/250?random=15"
+            link: "",
+            image: "https://picsum.photos/400/250?random=21"
         },
         {
             title: "West Java Active Covid-19 Cases Proportion",
             year: 2021,
-            description: "",
+            description: "Analysis of active Covid-19 cases proportion in West Java",
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Tableau'],
-                output: []
+                output: ['Article']
             },
-            image: "https://picsum.photos/400/250?random=17"
+            link: "",
+            image: "https://picsum.photos/400/250?random=22"
         },
         {
             title: "Spatial Data Integration of Administrative Region Based on GIS",
             year: 2020,
-            description: "",
+            description: "GIS-based spatial data integration for administrative regions",
             tags: {
                 task: ['Spatial Analysis', 'GIS Analysis'],
                 tools: ['QGIS', 'SQL'],
-                output: []
+                output: ['Article']
             },
-            image: "https://picsum.photos/400/250?random=14"
+            link: "",
+            image: "https://picsum.photos/400/250?random=23"
         },
     ],
 
     skills: {
         task: ['Data Analysis', 'Data Visualization', 'Product Analysis', 'GIS Analysis', 'Spatial Analysis', 'Data Management', 'Data Governance'],
-        tools: ['DBT (Data Modeling)', 'PostgreSQL', 'GCP BigQuery', 'MySQL', 'Clickhouse', 'Python', 'Pandas-Python', 'Numpy', 'ArcGIS', 'PostGIS', 'QGIS', 'Geopandas', 'Folium', 'Autocad Civil 3D', 'Tableau', 'Looker', 'Metabase', 'Power BI', 'Seaborn', 'Plotly', 'Matplotlib'],
+        tools: ['DBT (Data Modeling)', 'PostgreSQL', 'GCP BigQuery', 'MySQL', 'Clickhouse', 'Python', 'Pandas-Python', 'Numpy', 'ArcGIS', 'PostGIS', 'QGIS', 'Geopandas', 'Folium', 'Autocad Civil 3D', 'Tableau', 'Looker', 'Metabase', 'Power BI', 'Seaborn', 'Plotly', 'Matplotlib', 'Visual Studio Code', 'Sheets', 'SQL'],
         soft: ['Analytical Thinking', 'Problem Solving', 'Communication', 'People Management', 'Time Management', 'Leadership']
     },
 
@@ -203,7 +217,7 @@ const portfolio = {
             points: ["Input data into systems accurately and efficiently", "Created and maintained simple data management systems using spreadsheets", "Aggregated data and generated summaries to provide insights for decision-making"]
         },
         {
-            year: "Nov 2020 - Dec 2020",
+            year: "Nov 2020",
             company: "Cariilmu.co.id",
             companyInfo: "Educational platform",
             role: "Data Analyst Intern",

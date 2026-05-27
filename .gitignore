@@ -2,6 +2,7 @@
 .env
 *.csv
 *.env
+*.json
 node_modules/
 .DS_Store
 credentials.json

@@ -63,8 +63,8 @@ Templates are in `assets/data/templates/`. Each file has a specific structure:
 | `Name` | Yes | Project title |
 | `Company` | Yes | "Personal" or company name |
 | `Role` | No | Your role in the project |
-| `Task` | Yes | Task categories (semicolon-separated) |
-| `Tools` | Yes | Tools used (semicolon-separated) |
+| `Task` | Yes | Task categories (pipe-separated) |
+| `Tools` | Yes | Tools used (pipe-separated) |
 | `Output` | No | Output type: Article, Dashboard, etc |
 | `Year` | Yes | 4-digit year (e.g., 2024) |
 | `Description` | No | Brief project description |
@@ -72,8 +72,8 @@ Templates are in `assets/data/templates/`. Each file has a specific structure:
 | `Image` | No | Leave empty for auto-generated |
 
 ```csv
-Name,Company,Role,Task,Tools,Output,Year,Description,Link,Image
-E-commerce Dashboard,Personal,Data Analyst,Data Visualization; Data Analysis,"Python; SQL; Tableau",Dashboard,2024,Sales analysis dashboard,,,
+Name;Company;Role;Task;Tools;Output;Year;Description;Link;Image
+E-commerce Dashboard;Personal;Data Analyst;Data Visualization;Python|SQL|Tableau;Dashboard;2024;Sales analysis dashboard with Tableau;;
 ```
 
 #### 2. Technical Skills
@@ -111,15 +111,16 @@ Leadership
 | `Category` | No | Category (Programming, Database, Visualization, GIS, etc.) |
 
 ```csv
-Name,Category
-Python,Programming
-SQL,Database
-Tableau,Visualization
-QGIS,Gis
+Name;Category
+Python;Programming
+SQL;Database
+Tableau;Visualization
+QGIS;Gis
 ```
 
 **Notes:**
-- Multi-value fields (Task, Tools, Output) use semicolon (`;`) as separator
+- **CSV delimiter is semicolon (`;`)** - not comma, because descriptions may contain commas
+- Multi-value fields (Task, Tools, Output) use pipe (`|`) as separator
 - Year must be 4-digit
 - Image left empty = auto-generated placeholder from picsum.photos
 - Task values in projects must match Technical Skills for filter sync
