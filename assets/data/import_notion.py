@@ -53,7 +53,7 @@ def generate_projects(csv_filename, use_sheets=False):
                 'output': output
             },
             'link': link,
-            'image': f'https://picsum.photos/400/250?random={i+10}'
+            'image': f'https://picsum.photos/seed/{title}/400/250'
         })
     sorted_projects = sorted(projects, key=lambda x: (x['year'] or 0), reverse=True)
     return sorted_projects

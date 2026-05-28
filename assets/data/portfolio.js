@@ -22,7 +22,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "",
-            image: "https://picsum.photos/400/250?random=10"
+            image: "https://picsum.photos/seed/[Article] DRY Metadata: Save Time on dbt Documentation with Doc Blocks/400/250"
         },
         {
             title: "West Java Occupation Data Marts using dbt",
@@ -35,7 +35,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "",
-            image: "https://picsum.photos/400/250?random=11"
+            image: "https://picsum.photos/seed/West Java Occupation Data Marts using dbt/400/250"
         },
         {
             title: "Hotline Dashboard",
@@ -48,7 +48,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "",
-            image: "https://picsum.photos/400/250?random=12"
+            image: "https://picsum.photos/seed/Hotline Dashboard/400/250"
         },
         {
             title: "The Look Ecommerce Dashboard",
@@ -61,7 +61,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "",
-            image: "https://picsum.photos/400/250?random=13"
+            image: "https://picsum.photos/seed/The Look Ecommerce Dashboard/400/250"
         },
         {
             title: "Superstore Dashboard",
@@ -74,7 +74,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "",
-            image: "https://picsum.photos/400/250?random=14"
+            image: "https://picsum.photos/seed/Superstore Dashboard/400/250"
         },
         {
             title: "DBScan Clustering for Spatial Point Data",
@@ -87,7 +87,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "https://github.com/example/dbscan",
-            image: "https://picsum.photos/400/250?random=15"
+            image: "https://picsum.photos/seed/DBScan Clustering for Spatial Point Data/400/250"
         },
         {
             title: "DataCo Dashboard Report",
@@ -100,7 +100,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "",
-            image: "https://picsum.photos/400/250?random=16"
+            image: "https://picsum.photos/seed/DataCo Dashboard Report/400/250"
         },
         {
             title: "Interactive Visualization - Tourism Dashboard",
@@ -113,7 +113,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "",
-            image: "https://picsum.photos/400/250?random=17"
+            image: "https://picsum.photos/seed/Interactive Visualization - Tourism Dashboard/400/250"
         },
         {
             title: "K-Modes Clustering Sapawarga App User",
@@ -126,7 +126,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "https://github.com/example/kmeans",
-            image: "https://picsum.photos/400/250?random=18"
+            image: "https://picsum.photos/seed/K-Modes Clustering Sapawarga App User/400/250"
         },
         {
             title: "West Java Covid-19 Vaccination Analysis",
@@ -139,7 +139,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "https://github.com/example/covid",
-            image: "https://picsum.photos/400/250?random=19"
+            image: "https://picsum.photos/seed/West Java Covid-19 Vaccination Analysis/400/250"
         },
         {
             title: "Peta Potensi Risiko Penularan Covid-19 Jawa Barat",
@@ -152,7 +152,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "https://github.com/example/gis-covid",
-            image: "https://picsum.photos/400/250?random=20"
+            image: "https://picsum.photos/seed/Peta Potensi Risiko Penularan Covid-19 Jawa Barat/400/250"
         },
         {
             title: "Visual Storyboards for West Java Open Data Interactive Visualizations",
@@ -165,7 +165,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "",
-            image: "https://picsum.photos/400/250?random=21"
+            image: "https://picsum.photos/seed/Visual Storyboards for West Java Open Data Interactive Visualizations/400/250"
         },
         {
             title: "West Java Active Covid-19 Cases Proportion",
@@ -178,7 +178,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "",
-            image: "https://picsum.photos/400/250?random=22"
+            image: "https://picsum.photos/seed/West Java Active Covid-19 Cases Proportion/400/250"
         },
         {
             title: "Spatial Data Integration of Administrative Region Based on GIS",
@@ -191,7 +191,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "https://github.com/example/gis-integration",
-            image: "https://picsum.photos/400/250?random=23"
+            image: "https://picsum.photos/seed/Spatial Data Integration of Administrative Region Based on GIS/400/250"
         },
     ],
 
