@@ -22,7 +22,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "https://medium.com/towards-data-engineering/dry-metadata-on-dbt-documentation-with-doc-blocks-ff62f8f90ae6",
-            image: "https://picsum.photos/seed/[Article] DRY Metadata: Save Time on dbt Documentation with Doc Blocks/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "West Java Occupation Data Marts using dbt",
@@ -35,7 +35,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "https://github.com/farhanriz/westjava_occupation_mart",
-            image: "https://picsum.photos/seed/West Java Occupation Data Marts using dbt/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "Superstore Dashboard",
@@ -48,7 +48,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "",
-            image: "https://picsum.photos/seed/Superstore Dashboard/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "The Look Ecommerce Dashboard",
@@ -61,7 +61,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "https://lookerstudio.google.com/reporting/296be2b9-b121-47fc-abab-21d890137a20",
-            image: "https://picsum.photos/seed/The Look Ecommerce Dashboard/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "Hotline Dashboard",
@@ -74,7 +74,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "",
-            image: "https://picsum.photos/seed/Hotline Dashboard/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "Interactive Visualization - Tourism Dashboard",
@@ -87,7 +87,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "https://dashboard.jabarprov.go.id/id/dashboard-static/kebudayaan-dan-pariwisata",
-            image: "https://picsum.photos/seed/Interactive Visualization - Tourism Dashboard/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "West Java Active Covid-19 Cases Proportion",
@@ -100,7 +100,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "https://public.tableau.com/app/profile/muhammad.farhan.rizaldi/viz/1VizProporsiKasusAktif/ProporsiKasusCOVID19",
-            image: "https://picsum.photos/seed/West Java Active Covid-19 Cases Proportion/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "DataCo Dashboard Report",
@@ -113,7 +113,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "https://public.tableau.com/app/profile/muhammad.farhan.rizaldi/viz/DataCoDashboard/SalesDash",
-            image: "https://picsum.photos/seed/DataCo Dashboard Report/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "K-Modes Clustering Sapawarga App User",
@@ -126,7 +126,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "",
-            image: "https://picsum.photos/seed/K-Modes Clustering Sapawarga App User/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "DBScan Clustering for Spatial Point Data",
@@ -139,7 +139,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "",
-            image: "https://picsum.photos/seed/DBScan Clustering for Spatial Point Data/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "West Java Covid-19 Vaccination Analysis",
@@ -152,7 +152,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "",
-            image: "https://picsum.photos/seed/West Java Covid-19 Vaccination Analysis/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "Peta Potensi Risiko Penularan Covid-19 Jawa Barat",
@@ -165,7 +165,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "https://pikobar.jabarprov.go.id/transmission-potential",
-            image: "https://picsum.photos/seed/Peta Potensi Risiko Penularan Covid-19 Jawa Barat/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "Interactive Visualization - Open Data Jawa Barat",
@@ -178,7 +178,7 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "",
-            image: "https://picsum.photos/seed/Interactive Visualization - Open Data Jawa Barat/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
         {
             title: "Spatial Data Integration of Administrative Region Based on GIS",
@@ -191,7 +191,7 @@ const portfolio = {
                 output: ['Article']
             },
             link: "",
-            image: "https://picsum.photos/seed/Spatial Data Integration of Administrative Region Based on GIS/400/250"
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
         },
     ],
 

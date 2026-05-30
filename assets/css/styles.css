@@ -205,6 +205,29 @@ body {
     line-height: 1.8;
 }
 
+.email-text {
+    color: #1e3a8a;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.email-text:hover {
+    text-decoration: underline;
+}
+
+.email-label {
+    color: #1e3a8a;
+    cursor: pointer;
+}
+
+.email-label:hover {
+    text-decoration: underline;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
 .projects-filter {
     display: flex;
     flex-direction: column;

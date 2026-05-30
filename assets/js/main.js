@@ -68,7 +68,20 @@ function renderIntro() {
     document.getElementById('profile-name').textContent = p.name;
     document.getElementById('profile-role').textContent = p.role;
     document.getElementById('profile-intro').innerHTML = p.intro;
-    document.getElementById('email-link').href = `mailto:${p.email}`;
+
+    const emailEl = document.getElementById('email-link');
+    if (emailEl) {
+        emailEl.title = p.email;
+        emailEl.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(p.email).catch(function(){});
+            }
+            emailEl.title = 'Copied!';
+            setTimeout(function() { emailEl.title = p.email; }, 2000);
+        });
+    }
+
     document.getElementById('github-link').href = p.github;
     document.getElementById('linkedin-link').href = p.linkedin;
     if (p.medium) {
