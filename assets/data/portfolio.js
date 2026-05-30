@@ -213,7 +213,7 @@ const portfolio = {
             year: "Feb 2021 - June 2025",
             company: "Jabar Digital Service",
             companyInfo: "Government digital service agency for West Java province",
-            role: "Data Analyst (Junior → Senior)",
+            role: "Senior Data Analyst",
             points: [
                 "<b>Senior Data Analyst (Jan 2022 - June 2025)</b>",
                 "Led a team of 3 data analysts to develop product analytics for <a href='https://sidebar.jabarprov.go.id/' target='_blank'>Sidebar app</a>.",
