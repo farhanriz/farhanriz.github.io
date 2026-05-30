@@ -783,6 +783,22 @@ body {
     gap: 0.25rem;
 }
 
+.timeline-points .role-header {
+    list-style: none;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 0.5rem;
+}
+
+.timeline-points .role-header:first-child {
+    margin-top: 0;
+}
+
+.timeline-points .spacer {
+    list-style: none;
+    height: 0.5rem;
+}
+
 .experience-toggle {
     background: none;
     border: none;
@@ -1170,4 +1186,13 @@ body {
 
 .projects-container.show-detail #project-detail {
     width: auto;
+}
+
+a {
+    color: #1e3a8a;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

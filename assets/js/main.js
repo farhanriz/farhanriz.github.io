@@ -267,7 +267,7 @@ function openProjectDetail(project, card) {
     document.getElementById('detail-image').src = project.image;
     document.getElementById('detail-year').textContent = project.year || '';
     document.getElementById('detail-title').textContent = project.title;
-    document.getElementById('detail-description').textContent = project.description || '';
+    document.getElementById('detail-description').innerHTML = project.description || '';
 
     const detailsContainer = document.getElementById('detail-details');
     if (project.details) {
@@ -342,7 +342,7 @@ function renderProjects() {
             '<div class="card-body">' +
             '<h3 class="card-title">' + project.title + '</h3>' +
             (project.year ? '<div class="card-year">' + project.year + '</div>' : '') +
-            '<p class="card-description">' + project.description + '</p>' +
+            '<p class="card-description">' + (project.description ? project.description : '') + '</p>' +
             '<div class="card-tags">' +
             tagOrder.map(cat =>
                 (project.tags[cat] || []).map(tag => '<span class="tag tag-' + cat + ' ' + (activeFilters[cat].includes(tag) ? 'active' : '') + '" data-tag="' + tag + '" data-category="' + cat + '">' + tag + '</span>').join('')
@@ -414,15 +414,21 @@ function renderExperience() {
             '<div class="timeline-date">' + exp.year + ' · ' + duration + '</div>' +
             '<h3 class="timeline-company">' + exp.role + ' at <span class="company-name">' + exp.company + '</span></h3>' +
             (exp.companyInfo ? '<p class="experience-company-info">' + exp.companyInfo + '</p>' : '') +
-            (exp.points.length > 0 ? '<p class="experience-summary-text">' + exp.points[0] + '</p>' : '') +
+            (exp.points.length > 0 && !exp.points[0].startsWith('<b>') ? '<p class="experience-summary-text">' + exp.points[0] + '</p>' : '') +
             '</div>' +
             (exp.points.length > 0 ? '<button class="experience-toggle" aria-label="Toggle details"><svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>' : '') +
             '</div>' +
             (exp.points.length > 0 ? '<div class="experience-details"><ul class="timeline-points">' +
             exp.points.map(point => {
+                if (point.startsWith('<b>') && point.endsWith('</b>')) {
+                    return '<li class="role-header">' + point + '</li>';
+                }
                 if (point.startsWith('Technology:')) {
                     const parts = point.split(':');
                     return '<li><span class="tech-label">' + parts[0] + ':</span> ' + parts.slice(1).join(':').trim() + '</li>';
+                }
+                if (point.trim() === '') {
+                    return '<li class="spacer"></li>';
                 }
                 return '<li>' + point + '</li>';
             }).join('') +
