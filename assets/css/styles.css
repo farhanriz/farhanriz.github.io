@@ -553,8 +553,13 @@ body {
 
 .card-image {
     width: 100%;
-    height: 6rem;
+    height: auto;
+    max-height: 10rem;
     object-fit: cover;
+    object-position: top center;
+    background: var(--surface);
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
 }
 
 .card-body {
@@ -843,11 +848,23 @@ body {
 }
 
 .experience-item[data-expanded="true"] .experience-details {
-    max-height: 500px;
+    max-height: 600px;
 }
 
 .experience-item[data-expanded="true"] .toggle-icon {
     transform: rotate(180deg);
+}
+
+.experience-tech {
+    padding: 0.5rem 1rem 0.5rem 1.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    list-style: disc;
+    list-style-position: inside;
+}
+
+.experience-tech b {
+    color: #1e3a8a;
 }
 
 .timeline-date {
@@ -1030,10 +1047,15 @@ body {
 
 .detail-image {
     width: 100%;
-    height: 12rem;
+    height: auto;
+    max-height: 18rem;
     object-fit: cover;
+    object-position: top center;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: zoom-in;
 }
 
 .detail-year {
@@ -1218,4 +1240,69 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lightbox-overlay.active {
+    display: flex;
+}
+
+.lightbox-image {
+    max-width: 90vw;
+    max-height: 90vh;
+    cursor: zoom-in;
+    transition: transform 0.2s;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-controls {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.lightbox-zoom {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.lightbox-zoom:hover {
+    background: rgba(255, 255, 255, 0.3);
 }

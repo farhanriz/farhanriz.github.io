@@ -115,6 +115,16 @@
             </div>
         </div>
 
+        <div id="image-lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightbox-image" class="lightbox-image" src="" alt="" onclick="event.stopPropagation()">
+            <div class="lightbox-controls" onclick="event.stopPropagation()">
+                <button class="lightbox-zoom" onclick="zoomIn()">+</button>
+                <button class="lightbox-zoom" onclick="zoomOut()">−</button>
+                <button class="lightbox-zoom" onclick="resetZoom()">⟲</button>
+            </div>
+        </div>
+
         <section id="skills" class="section section-alt">
             <div class="container">
                 <h2 class="section-title">Skills</h2>

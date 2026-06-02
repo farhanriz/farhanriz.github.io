@@ -277,10 +277,25 @@ function openProjectDetail(project, card) {
     document.querySelectorAll('.card.selected-project').forEach(c => c.classList.remove('selected-project'));
     card.classList.add('selected-project');
 
-    document.getElementById('detail-image').src = project.image;
+    const detailImg = document.getElementById('detail-image');
+    detailImg.src = project.image;
+    detailImg.style.cursor = 'zoom-in';
+    detailImg.addEventListener('click', function() {
+        const isPlaceholder = project.image && project.image.startsWith('data:image/svg');
+        if (!isPlaceholder) {
+            openLightbox(project.image);
+        }
+    });
     document.getElementById('detail-year').textContent = project.year || '';
     document.getElementById('detail-title').textContent = project.title;
     document.getElementById('detail-description').innerHTML = project.description || '';
+
+    document.getElementById('detail-description').querySelectorAll('img').forEach(function(img) {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', function() {
+            openLightbox(this.src);
+        });
+    });
 
     const detailsContainer = document.getElementById('detail-details');
     if (project.details) {
@@ -355,7 +370,6 @@ function renderProjects() {
             '<div class="card-body">' +
             '<h3 class="card-title">' + project.title + '</h3>' +
             (project.year ? '<div class="card-year">' + project.year + '</div>' : '') +
-            '<p class="card-description">' + (project.description ? project.description : '') + '</p>' +
             '<div class="card-tags">' +
             tagOrder.map(cat =>
                 (project.tags[cat] || []).map(tag => '<span class="tag tag-' + cat + ' ' + (activeFilters[cat].includes(tag) ? 'active' : '') + '" data-tag="' + tag + '" data-category="' + cat + '">' + tag + '</span>').join('')
@@ -446,6 +460,7 @@ function renderExperience() {
                 return '<li>' + point + '</li>';
             }).join('') +
             '</ul></div>' : '') +
+            (exp.technology ? '<div class="experience-tech"><b>Technology:</b> ' + exp.technology + '</div>' : '') +
             '</div>';
     }).join('');
 
@@ -508,6 +523,41 @@ function init() {
             closeProjectDetail();
         }
     });
+}
+
+let lightboxZoom = 1;
+let lightboxImageSrc = '';
+
+function openLightbox(src) {
+    if (!src || src.startsWith('data:image/svg')) return;
+    lightboxImageSrc = src;
+    const lightbox = document.getElementById('image-lightbox');
+    const img = document.getElementById('lightbox-image');
+    img.src = src;
+    img.style.transform = 'scale(1)';
+    lightboxZoom = 1;
+    lightbox.classList.add('active');
+}
+
+function closeLightbox() {
+    document.getElementById('image-lightbox').classList.remove('active');
+}
+
+function zoomIn() {
+    lightboxZoom += 0.5;
+    document.getElementById('lightbox-image').style.transform = 'scale(' + lightboxZoom + ')';
+}
+
+function zoomOut() {
+    if (lightboxZoom > 0.5) {
+        lightboxZoom -= 0.5;
+        document.getElementById('lightbox-image').style.transform = 'scale(' + lightboxZoom + ')';
+    }
+}
+
+function resetZoom() {
+    lightboxZoom = 1;
+    document.getElementById('lightbox-image').style.transform = 'scale(1)';
 }
 
 document.addEventListener('DOMContentLoaded', init);
