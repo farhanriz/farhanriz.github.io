@@ -81,6 +81,10 @@ function renderIntro() {
             setTimeout(function() { emailEl.title = p.email; }, 2000);
         });
     }
+    const emailTextEl = document.getElementById('email-text');
+    if (emailTextEl) {
+        emailTextEl.textContent = p.email;
+    }
 
     document.getElementById('github-link').href = p.github;
     document.getElementById('linkedin-link').href = p.linkedin;

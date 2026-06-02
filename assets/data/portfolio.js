@@ -7,7 +7,7 @@ const portfolio = {
         github: "https://github.com/farhanriz",
         linkedin: "https://www.linkedin.com/in/farhanrizaldi/",
         medium: "https://medium.com/@rizaldifarhan",
-        intro: "Data Analyst with 4+ years experience. A well-planned, attention to detail, and creative person. Interested in data analysis and spatial/GIS analysis, and data management & governance. Have a high desire to learn something new.<br><br>Let's Collaborate!",
+        intro: "Data Analyst with 5+ years experience. A well-planned, attention to detail, and creative person. Interested in data analysis and spatial/GIS analysis, and data management & governance. Have a high desire to learn something new.<br><br>Let's Collaborate!",
     },
 
     projects: [
