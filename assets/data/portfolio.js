@@ -205,7 +205,7 @@ const portfolio = {
         {
             year: "July 2025 - Present",
             company: "Sekolah.mu",
-            companyInfo: "Semesta Integrasi Digital - provides education and career solutions through schools, courses, digital platforms, and consulting services",
+            companyInfo: "Semesta Integrasi Digital - also known as Sekolah.mu, provides education and career solutions through multiple business units: schools, courses, digital platforms, and consulting services.",
             role: "Senior Data Analyst",
             points: ["Acted as a data consultant to support decision-making across multiple functions and business units", "Designed, developed, and maintained data models, master data, and outputs such as reports and dashboards", "Prepared, scraped, and developed spatial data, including preprocessing for master data development, analysis, and visualization"],
             technology: "dbt, SQL, Python, Metabase"
@@ -213,7 +213,7 @@ const portfolio = {
 {
             year: "Feb 2021 - June 2025",
             company: "Jabar Digital Service",
-            companyInfo: "Government digital service agency for West Java province",
+            companyInfo: "Jabar Digital Service - West Java's Government digital innovation unit that focuses on digital transformation",
             role: "Data Analyst (Junior → Senior)",
             points: [
                 "<b>Senior Data Analyst (Jan 2022 - June 2025)</b>",
@@ -234,14 +234,14 @@ const portfolio = {
         {
             year: "Nov 2020 - Jan 2022",
             company: "Revou",
-            companyInfo: "12-week data analytics program - teaching assistant role",
+            companyInfo: "Revou - Indonesia's largest professional skilling platform with total 1.8M+ learners, focused on digital skills.",
             role: "Team Lead for Full-Stack Data Analytics Program",
-            points: ["Conducted weekly Team Lead Simulation (hands-on sessions) for 12 students", "Provided assignment grading and feedback to oversee students' performance", "Provided 1:1 sessions and supervised 3 group final projects"]
+            points: ["Teaching assistang for 12-week data analytics training program", "Conducted weekly Team Lead Simulation (hands-on sessions) for 12 students", "Provided assignment grading and feedback to oversee students' performance", "Provided 1:1 sessions and supervised 3 group final projects"]
         },
         {
             year: "Jan 2024 - Dec 2024",
             company: "RevoU",
-            companyInfo: "Indonesia's largest professional skilling platform with total 1.8M+ learners, focused on digital skills.",
+            companyInfo: "Revou - Indonesia's largest professional skilling platform with total 1.8M+ learners, focused on digital skills.",
             role: "Facilitator for Corporate Data Analytics Training",
             points: ["Monitor project assignment sessions, answer student's questions and facilitate discussions.", "Achieved a facilitator satisfaction rate of 4.88/5."],
             technology: "Power BI, Tableau, Google Sheets, Excel"
@@ -249,7 +249,7 @@ const portfolio = {
         {
             year: "Nov 2020 - Jan 2021",
             company: "Labkesda Jawa Barat",
-            companyInfo: "West Java Provincial Health Laboratory",
+            companyInfo: "Labkesda Jawa Barat - West Java Provincial Health Laboratory, providing diagnostic and testing services",
             role: "Data Entry & Management",
             points: ["Input data into systems accurately and efficiently", "Created and maintained simple data management systems using spreadsheets", "Aggregated data and generated summaries to provide insights for decision-making"],
             technology: "Google Sheets"
@@ -257,7 +257,7 @@ const portfolio = {
         {
             year: "Nov 2020",
             company: "Cariilmu.co.id",
-            companyInfo: "Educational platform",
+            companyInfo: "Cariilmu.co.id - Learning platform with 250K+ learners, focused on career and entrepreneurship development",
             role: "Data Analyst Intern",
             points: ["Cleansing sales, HR, and ratings data", "Maintained monitoring spreadsheet data (sales, HR, ratings)", "Created pivot table to give insight about summary of the data"],
             technology: "Google Sheets"
