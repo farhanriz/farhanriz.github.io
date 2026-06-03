@@ -430,6 +430,52 @@ function calculateDuration(startStr, endStr) {
     }
 }
 
+function calculateDuration(startStr, endStr) {
+    const months = {
+        'January': 0, 'February': 1, 'March': 2, 'April': 3, 'May': 4, 'June': 5,
+        'July': 6, 'August': 7, 'September': 8, 'October': 9, 'November': 10, 'December': 11,
+        'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
+        'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
+    };
+
+    function parseDate(str) {
+        const parts = str.split(' ');
+        const monthStr = parts[0];
+        const year = parseInt(parts[1]);
+        const month = months[monthStr];
+        return { month: month !== undefined ? month : 0, year: year || 0 };
+    }
+
+    const start = parseDate(startStr);
+    const endStrLower = endStr.toLowerCase();
+    let end;
+    if (endStrLower === 'present') {
+        const now = new Date();
+        end = { month: now.getMonth(), year: now.getFullYear() };
+    } else {
+        end = parseDate(endStr);
+    }
+
+    let totalMonths = (end.year - start.year) * 12 + (end.month - start.month) + 1;
+    if (totalMonths <= 0) totalMonths = 1;
+
+    if (totalMonths < 2) {
+        return '1 mo';
+    } else if (totalMonths < 12) {
+        return totalMonths + ' mos';
+    } else {
+        const years = Math.floor(totalMonths / 12);
+        const monthsRemainder = totalMonths % 12;
+        if (monthsRemainder === 0) {
+            return years + ' yr' + (years > 1 ? 's' : '');
+        } else if (monthsRemainder < 3) {
+            return years + ' yr' + (years > 1 ? 's' : '') + ' ' + monthsRemainder + ' mo';
+        } else {
+            return years + ' yr' + (years > 1 ? 's' : '') + ' ' + monthsRemainder + ' mos';
+        }
+    }
+}
+
 function renderExperience() {
     const container = document.getElementById('experience-timeline');
     if (!container) return;
@@ -442,7 +488,7 @@ function renderExperience() {
             '<div class="experience-header">' +
             '<div class="timeline-dot"></div>' +
             '<div class="experience-summary">' +
-            '<div class="timeline-date">' + exp.year + ' · ' + duration + '</div>' +
+            '<div class="timeline-date">' + exp.year + (exp.company.toLowerCase() !== 'cariilmu.co.id' ? ' · ' + duration : '') + '</div>' +
             '<h3 class="timeline-company">' + exp.role + ' at <span class="company-name">' + exp.company + '</span></h3>' +
             (exp.companyInfo ? '<p class="experience-company-info">' + exp.companyInfo + '</p>' : '') +
             (exp.points.length > 0 && !exp.points[0].startsWith('<b>') ? '<p class="experience-summary-text">' + exp.points[0] + '</p>' : '') +
