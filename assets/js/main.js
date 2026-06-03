@@ -491,7 +491,6 @@ function renderExperience() {
             '<div class="timeline-date">' + exp.year + (exp.company.toLowerCase() !== 'cariilmu.co.id' ? ' · ' + duration : '') + '</div>' +
             '<h3 class="timeline-company">' + exp.role + ' at <span class="company-name">' + exp.company + '</span></h3>' +
             (exp.companyInfo ? '<p class="experience-company-info">' + exp.companyInfo + '</p>' : '') +
-            (exp.points.length > 0 && !exp.points[0].startsWith('<b>') ? '<p class="experience-summary-text">' + exp.points[0] + '</p>' : '') +
             '</div>' +
             (exp.points.length > 0 ? '<button class="experience-toggle" aria-label="Toggle details"><svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>' : '') +
             '</div>' +
