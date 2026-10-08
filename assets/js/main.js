@@ -9,8 +9,8 @@ let selectedProject = null;
 let currentPage = 1;
 
 const PAGE_SIZE = 5;
-const TYPE_ORDER = ['Analysis', 'Dashboard', 'Article', 'Data Management'];
-const TYPE_LABELS = { Analysis: 'Analysis', Dashboard: 'Dashboards', Article: 'Articles', 'Data Management': 'Data Management' };
+const TYPE_ORDER = ['Analysis', 'Dashboard', 'Article', 'Data Management', 'Web App'];
+const TYPE_LABELS = { Analysis: 'Analysis', Dashboard: 'Dashboards', Article: 'Articles', 'Data Management': 'Data Management', 'Web App': 'Web Apps' };
 
 function esc(str) {
     return String(str == null ? '' : str)
@@ -534,6 +534,35 @@ function renderExperience() {
     });
 }
 
+// Talks & community
+
+function renderActivities() {
+    const container = document.getElementById('activities-list');
+    const items = portfolio.activities || [];
+
+    if (items.length === 0) {
+        container.innerHTML = '<div class="activities-empty">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"></path></svg>' +
+            '<p class="activities-empty-title">Talks & sessions coming soon</p>' +
+            '<p class="activities-empty-text">Speaking, workshops, and community events will be listed here.</p>' +
+            '</div>';
+        return;
+    }
+
+    container.innerHTML = '<div class="activities-grid">' + items.map(a => {
+        const tag = a.link ? 'a' : 'div';
+        const attrs = a.link ? ' href="' + esc(a.link) + '" target="_blank" rel="noopener"' : '';
+        return '<' + tag + ' class="activity-card"' + attrs + '>' +
+            '<div class="activity-meta">' +
+            (a.role ? '<span class="type-badge">' + esc(a.role) + '</span>' : '') +
+            '<span>' + esc(a.date || '') + '</span>' +
+            '</div>' +
+            '<h3 class="activity-title">' + esc(a.title) + '</h3>' +
+            '<p class="activity-event">' + esc([a.event, a.location].filter(Boolean).join(' · ')) + '</p>' +
+            '</' + tag + '>';
+    }).join('') + '</div>';
+}
+
 // Lightbox
 
 let lightboxZoom = 1;
@@ -574,6 +603,7 @@ function init() {
     renderIntro();
     renderFeatured();
     renderExperience();
+    renderActivities();
     refreshProjects();
 
     document.getElementById('theme-toggle').addEventListener('click', toggleTheme);

@@ -29,6 +29,19 @@ const portfolio = {
             impact: "3 database types"
         },
         {
+            title: "Data List Formatter",
+            year: 2026,
+            description: "<b>Objective</b><br>A small browser tool that turns values pasted one per line into a clean, delimited list, handy for building SQL filters or sharing ID lists.<br><br><b>Features</b><br>- Text or integer mode, with single-quote escaping and strict whole-number validation<br>- Custom delimiter and wrapper characters<br>- Optional duplicate removal and natural sorting<br>- One-click copy, light/dark theme, and a responsive, accessible layout<br><br><b>Privacy</b><br>Runs entirely in the browser with no backend, analytics, or network requests; pasted data is never uploaded or stored.<br><br><b>Result</b><br><img src='assets/images/data-list-formatter.png' style='width:100%;max-width:400px;border-radius:0.5rem;border:1px solid var(--border);margin:0.5rem 0;'><br>- Live app: <a href='https://farhanriz.github.io/data-list-formatter/' target='_blank'>Open the app</a><br>- Code: <a href='https://github.com/farhanriz/data-list-formatter' target='_blank'>View on GitHub</a>",
+            details: "",
+            tags: {
+                task: ['Web Development'],
+                tools: ['JavaScript', 'HTML/CSS'],
+                output: ['Web App']
+            },
+            link: "https://farhanriz.github.io/data-list-formatter/",
+            image: "assets/images/data-list-formatter.png"
+        },
+        {
             title: "DRY Metadata: Save Time on dbt Documentation with Doc Blocks",
             year: 2026,
             description: "A medium article, published on Towards Data Engineering.<br><br><b>Result</b><br><img src='assets/images/dry-metadata.png' style='width:100%;max-width:400px;border-radius:0.5rem;border:1px solid var(--border);margin:0.5rem 0;'><br><a href='https://medium.com/towards-data-engineering/dry-metadata-on-dbt-documentation-with-doc-blocks-ff62f8f90ae6' target='_blank'>Read the article here</a>",
@@ -222,10 +235,22 @@ const portfolio = {
     ],
 
     skills: {
-        task: ['Data Analysis', 'Data Visualization', 'Product Analytics', 'GIS Analysis', 'Spatial Analysis', 'Data Management', 'Data Governance'],
-        tools: ['dbt', 'PostgreSQL', 'BigQuery', 'MySQL', 'MongoDB', 'Clickhouse', 'Python', 'Pandas-Python', 'Numpy', 'ArcGIS', 'PostGIS', 'QGIS', 'Geopandas', 'Folium', 'Autocad Civil 3D', 'Tableau', 'Looker', 'Metabase', 'Power BI', 'Seaborn', 'Plotly', 'Matplotlib', 'Visual Studio Code', 'GitLab', 'Sheets', 'SQL'],
+        task: ['Data Analysis', 'Data Visualization', 'Product Analytics', 'GIS Analysis', 'Spatial Analysis', 'Data Management', 'Data Governance', 'Web Development'],
+        tools: ['dbt', 'PostgreSQL', 'BigQuery', 'MySQL', 'MongoDB', 'Clickhouse', 'Python', 'JavaScript', 'HTML/CSS', 'Pandas-Python', 'Numpy', 'ArcGIS', 'PostGIS', 'QGIS', 'Geopandas', 'Folium', 'Autocad Civil 3D', 'Tableau', 'Looker', 'Metabase', 'Power BI', 'Seaborn', 'Plotly', 'Matplotlib', 'Visual Studio Code', 'GitLab', 'Sheets', 'SQL'],
         soft: ['Analytical Thinking', 'Problem Solving', 'Communication', 'People Management', 'Time Management', 'Leadership']
     },
+
+    // Talks, workshops, and community events. Leave empty to show the "coming soon" placeholder.
+    // Example entry:
+    // {
+    //     date: "Mar 2026",
+    //     role: "Speaker",             // Speaker, Panelist, Mentor, Workshop Host, ...
+    //     title: "Getting Started with dbt",
+    //     event: "Data Community Meetup",
+    //     location: "Jakarta / Online",
+    //     link: "https://..."
+    // },
+    activities: [],
 
     experiences: [
         {
