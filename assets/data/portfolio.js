@@ -7,6 +7,7 @@ const portfolio = {
         github: "https://github.com/farhanriz",
         linkedin: "https://www.linkedin.com/in/farhanrizaldi/",
         medium: "https://medium.com/@rizaldifarhan",
+        yearsExperience: "5+",
         intro: "Data Analyst with 5+ years experience. A well-planned, attention to detail, and creative person. Interested in data analysis and spatial/GIS analysis, and data management & governance. Have a high desire to learn something new.<br><br>Let's Collaborate!",
     },
 
@@ -32,10 +33,13 @@ const portfolio = {
             tags: {
                 task: ['Data Analysis', 'Data Management'],
                 tools: ['SQL', 'Visual Studio Code', 'dbt'],
-                output: ['Dashboard']
+                output: ['Dashboard', 'Article']
             },
             link: "https://github.com/farhanriz/westjava_occupation_mart",
-            image: "assets/images/westjava-occupation-datamart.png"
+            image: "assets/images/westjava-occupation-datamart.png",
+            featured: true,
+            summary: "Modeled West Java occupation data into tested, documented data marts with dbt Core.",
+            impact: "End-to-end dbt project"
         },
         {
             title: "Superstore Dashboard",
@@ -87,7 +91,10 @@ const portfolio = {
                 output: ['Dashboard']
             },
             link: "https://dashboard.jabarprov.go.id/id/dashboard-static/kebudayaan-dan-pariwisata",
-            image: "assets/images/tourism-dashboard.png"
+            image: "assets/images/tourism-dashboard.png",
+            featured: true,
+            summary: "Public tourism & culture dashboard for West Java, from storyboard to release.",
+            impact: "Live public dashboard"
         },
         {
             title: "West Java Active Covid-19 Cases Proportion",
@@ -97,7 +104,7 @@ const portfolio = {
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Tableau'],
-                output: ['Article']
+                output: ['Dashboard', 'Analysis']
             },
             link: "https://public.tableau.com/app/profile/muhammad.farhan.rizaldi/viz/1VizProporsiKasusAktif/ProporsiKasusCOVID19",
             image: "assets/images/covid-active-cases-proportion.png"
@@ -110,7 +117,7 @@ const portfolio = {
             tags: {
                 task: ['Data Visualization'],
                 tools: ['Tableau'],
-                output: ['Dashboard']
+                output: ['Dashboard', 'Article']
             },
             link: "https://public.tableau.com/app/profile/muhammad.farhan.rizaldi/viz/DataCoDashboard/SalesDash",
             image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
@@ -123,7 +130,7 @@ const portfolio = {
             tags: {
                 task: ['Data Analysis'],
                 tools: ['Python', 'SQL'],
-                output: ['Article']
+                output: ['Analysis']
             },
             link: "",
             image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
@@ -136,7 +143,7 @@ const portfolio = {
             tags: {
                 task: ['Data Analysis', 'Spatial Analysis', 'GIS Analysis'],
                 tools: ['Python', 'QGIS'],
-                output: ['Article']
+                output: ['Analysis']
             },
             link: "",
             image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"
@@ -149,10 +156,13 @@ const portfolio = {
             tags: {
                 task: ['Data Analysis'],
                 tools: ['Python', 'SQL', 'Sheets'],
-                output: ['Article']
+                output: ['Analysis']
             },
             link: "",
-            image: "assets/images/covid-vaccination-1.png"
+            image: "assets/images/covid-vaccination-1.png",
+            featured: true,
+            summary: "Daily stock & demand analysis that steered vaccine distribution across West Java.",
+            impact: "455K doses/day peak"
         },
         {
             title: "Peta Potensi Risiko Penularan Covid-19 Jawa Barat",
@@ -162,10 +172,13 @@ const portfolio = {
             tags: {
                 task: ['Data Analysis', 'Spatial Analysis', 'GIS Analysis'],
                 tools: ['Python', 'QGIS', 'SQL'],
-                output: ['Article']
+                output: ['Analysis']
             },
             link: "https://pikobar.jabarprov.go.id/transmission-potential",
-            image: "assets/images/risk-map-covid.png"
+            image: "assets/images/risk-map-covid.png",
+            featured: true,
+            summary: "Cleaned and aggregated POI spatial data to score COVID-19 transmission risk by village.",
+            impact: "Public risk map"
         },
         {
             title: "Interactive Visualization - Open Data Jawa Barat",
@@ -188,7 +201,7 @@ const portfolio = {
             tags: {
                 task: ['Spatial Analysis', 'GIS Analysis'],
                 tools: ['QGIS', 'SQL'],
-                output: ['Article']
+                output: ['Analysis']
             },
             link: "",
             image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E"

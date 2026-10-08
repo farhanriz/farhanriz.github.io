@@ -42,6 +42,9 @@ def generate_projects(csv_filename, use_sheets=False):
         description = row.get('Description', '')
         details = row.get('Details', '')
         link = row.get('Link', '')
+        featured = row.get('Featured', '').strip().lower() in ('true', 'yes', '1', 'y')
+        summary = row.get('Summary', '').strip()
+        impact = row.get('Impact', '').strip()
         projects.append({
             'title': title,
             'year': year,
@@ -53,7 +56,10 @@ def generate_projects(csv_filename, use_sheets=False):
                 'output': output
             },
             'link': link,
-            'image': f'https://picsum.photos/seed/{title}/400/250'
+            'image': f'https://picsum.photos/seed/{title}/400/250',
+            'featured': featured,
+            'summary': summary,
+            'impact': impact
         })
     sorted_projects = sorted(projects, key=lambda x: (x['year'] or 0), reverse=True)
     return sorted_projects
@@ -158,6 +164,7 @@ def generate_portfolio(use_sheets=False):
             'github': 'https://github.com/farhanriz',
             'linkedin': 'https://www.linkedin.com/in/farhanrizaldi/',
             'medium': 'https://medium.com/@rizaldifarhan',
+            'yearsExperience': '5+',
             'intro': 'Data Analyst with 4+ years experience. A well-planned, attention to detail, and creative person. Interested in data analysis and spatial/GIS analysis, and data management & governance. Have a high desire to learn something new.<br><br>Let\'s Collaborate!'
         },
         'projects': projects,
@@ -196,7 +203,11 @@ def format_js(portfolio):
         lines.append(f'                output: {str(project["tags"]["output"])}')
         lines.append('            },')
         lines.append(f'            link: "{project.get("link", "")}",')
-        lines.append(f'            image: "{project["image"]}"')
+        lines.append(f'            image: "{project["image"]}"' + (',' if project.get('featured') else ''))
+        if project.get('featured'):
+            lines.append('            featured: true,')
+            lines.append(f'            summary: "{project.get("summary", "")}",')
+            lines.append(f'            impact: "{project.get("impact", "")}"')
         lines.append('        },')
     lines.append('    ],')
     lines.append('')

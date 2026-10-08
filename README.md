@@ -1,6 +1,6 @@
 # Portfolio Website
 
-A responsive portfolio website built with vanilla HTML, CSS, and JavaScript. Features project filtering with multi-select dropdowns, skill tags, and a split-view detail panel.
+A responsive portfolio website built with vanilla HTML, CSS, and JavaScript. Features headline stats, featured projects, a filterable project index, and a slide-over detail drawer.
 
 ## Quick Start
 
@@ -41,11 +41,12 @@ farhanriz.github.io/
 
 ## Features
 
-- **Multi-select filter dropdowns** - Filter by Task, Tools, Output, Year (AND between categories, OR within)
-- **Skill-based filtering** - Click skills in Skills section to filter projects
-- **Selected tags display** - Shows active filters with remove buttons
-- **Split-view detail panel** - Project details alongside the grid
-- **Dark/Light theme** - Toggle in header/footer, persisted in localStorage
+- **Stats row** - Big numbers (projects, per-type counts, tools, years) computed from data; clicking a type filters the list
+- **Featured projects** - Compact highlight cards for projects marked `featured: true`, with optional `impact` badge
+- **Project index** - Paginated list (5 per page) with search, type switch (All / Analysis / Dashboards / Articles), domain chips, and Tools / Year multi-selects (AND between categories, OR within)
+- **Skill-based filtering** - Skills that match project tags are clickable and filter the list
+- **Detail drawer** - Slide-over panel; deep-linkable via `#p/<project-slug>`
+- **Dark/Light theme** - Follows OS preference, toggle persisted in localStorage
 - **Responsive design** - Mobile and desktop friendly
 
 ## Data Management
@@ -65,12 +66,15 @@ Templates are in `assets/data/templates/`. Each file has a specific structure:
 | `Role` | No | Your role in the project |
 | `Task` | Yes | Task categories (pipe-separated) |
 | `Tools` | Yes | Tools used (pipe-separated) |
-| `Output` | No | Output type: Article, Dashboard, etc |
+| `Output` | No | One or more of Analysis, Dashboard, Article (pipe-separated) |
 | `Year` | Yes | 4-digit year (e.g., 2024) |
 | `Description` | No | Brief project description |
 | `Details` | No | Additional details (pipe-separated) |
 | `Link` | No | URL to project |
 | `Image` | No | Leave empty for auto-generated |
+| `Featured` | No | `true` to show in the Featured section |
+| `Summary` | No | One-line summary for featured cards |
+| `Impact` | No | Short highlight badge, e.g. `455K doses/day peak` |
 
 ```csv
 Name;Company;Role;Task;Tools;Output;Year;Description;Details;Link;Image
