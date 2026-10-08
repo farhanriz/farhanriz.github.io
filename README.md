@@ -66,7 +66,7 @@ Templates are in `assets/data/templates/`. Each file has a specific structure:
 | `Role` | No | Your role in the project |
 | `Task` | Yes | Task categories (pipe-separated) |
 | `Tools` | Yes | Tools used (pipe-separated) |
-| `Output` | No | One or more of Analysis, Dashboard, Article (pipe-separated) |
+| `Output` | No | One or more of Analysis, Dashboard, Article, Data Management (pipe-separated) |
 | `Year` | Yes | 4-digit year (e.g., 2024) |
 | `Description` | No | Brief project description |
 | `Details` | No | Additional details (pipe-separated) |

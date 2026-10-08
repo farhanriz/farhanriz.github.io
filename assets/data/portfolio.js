@@ -13,12 +13,28 @@ const portfolio = {
 
     projects: [
         {
-            title: "[Article] DRY Metadata: Save Time on dbt Documentation with Doc Blocks",
+            title: "Data Migration using dbt",
+            year: 2026,
+            description: "<b>Objective</b><br>Migrate data across several database types, including BigQuery, PostgreSQL, and MongoDB, using dbt with layered, tested, and contract-enforced models.<br><br><b>Approach</b><br>- <b>Data layering:</b> seeds, helper, intermediate, staging, and fact/mart layers, each with a single clear responsibility.<br>- <b>Staging:</b> light cleaning, renaming, and type casting of raw sources.<br>- <b>Complex queries:</b> CTEs, window functions, and multi-source joins to reshape source data into the target schema.<br>- <b>Jinja looping:</b> loops to generate repetitive columns and union similar sources without copy-paste.<br>- <b>Complex macros:</b> reusable macros with conditional logic, dynamic SQL generation, and loops over columns and relations, plus cross-database type mapping.<br>- <b>Data tests:</b> generic tests (unique, not_null, relationships, accepted_values) plus singular tests for business rules.<br>- <b>Data contracts &amp; versioning:</b> dbt model contracts enforce column names and data types; all code is versioned in GitLab.<br>- <b>Python migration scripts:</b> Python runs small, scoped migrations from dbt results into the target databases.<br><br><b>Result</b><br>A repeatable, tested migration pipeline across BigQuery, PostgreSQL, and MongoDB, with documented models and fewer manual steps.",
+            details: "",
+            tags: {
+                task: ['Data Management', 'Data Governance'],
+                tools: ['dbt', 'SQL', 'Python', 'BigQuery', 'PostgreSQL', 'MongoDB', 'GitLab'],
+                output: ['Data Management']
+            },
+            link: "",
+            image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250'%3E%3Crect fill='%231e3a8a' width='400' height='250'/%3E%3C/svg%3E",
+            featured: true,
+            summary: "Migrated data across BigQuery, PostgreSQL, and MongoDB with layered, tested, contract-enforced dbt models.",
+            impact: "3 database types"
+        },
+        {
+            title: "DRY Metadata: Save Time on dbt Documentation with Doc Blocks",
             year: 2026,
             description: "A medium article, published on Towards Data Engineering.<br><br><b>Result</b><br><img src='assets/images/dry-metadata.png' style='width:100%;max-width:400px;border-radius:0.5rem;border:1px solid var(--border);margin:0.5rem 0;'><br><a href='https://medium.com/towards-data-engineering/dry-metadata-on-dbt-documentation-with-doc-blocks-ff62f8f90ae6' target='_blank'>Read the article here</a>",
             details: "",
             tags: {
-                task: ['Data Analysis', 'Data Governance'],
+                task: ['Data Analysis', 'Data Governance', 'Data Management'],
                 tools: ['dbt'],
                 output: ['Article']
             },
@@ -33,13 +49,10 @@ const portfolio = {
             tags: {
                 task: ['Data Analysis', 'Data Management'],
                 tools: ['SQL', 'Visual Studio Code', 'dbt'],
-                output: ['Dashboard', 'Article']
+                output: ['Data Management', 'Dashboard', 'Article']
             },
             link: "https://github.com/farhanriz/westjava_occupation_mart",
-            image: "assets/images/westjava-occupation-datamart.png",
-            featured: true,
-            summary: "Modeled West Java occupation data into tested, documented data marts with dbt Core.",
-            impact: "End-to-end dbt project"
+            image: "assets/images/westjava-occupation-datamart.png"
         },
         {
             title: "Superstore Dashboard",
@@ -128,7 +141,7 @@ const portfolio = {
             description: "<b>Background</b><br>Sapawarga (https://jabarprov.go.id/sapawarga) is a super app developed by west java government for public service in West Java. With a commitment to seamless integration, Sapawarga is gradually becoming the central hub for all public services in West Java.<br><br>As Sapawarga grows in users, understanding their diverse characteristics is crucial. To achieve this, we plan to conduct cluster analysis, grouping users based on common traits and behaviors. This approach will help us tailor services more effectively to the specific needs of each user cluster.<br><br><b>Objectives</b><br>Understanding diverse characteristics of the sapawarga user.<br><br><b>Data Preparation</b><br>Variables: Age range, education level, type of work, region type<br><br>Data preparation step:<br>- Import data<br>- Join data<br>- Data understanding<br>- Handling missing values<br>- Re-labelling data (based on defined variables category/range)<br><br><b>Result</b><br><img src='assets/images/kmodes-clustering.png' style='width:100%;max-width:400px;border-radius:0.5rem;border:1px solid var(--border);margin:0.5rem 0;'><br>[confidential]",
             details: "",
             tags: {
-                task: ['Data Analysis'],
+                task: ['Data Analysis', 'Product Analytics'],
                 tools: ['Python', 'SQL'],
                 output: ['Analysis']
             },
@@ -142,7 +155,7 @@ const portfolio = {
             details: "",
             tags: {
                 task: ['Data Analysis', 'Spatial Analysis', 'GIS Analysis'],
-                tools: ['Python', 'QGIS'],
+                tools: ['Python', 'QGIS', 'PostGIS'],
                 output: ['Analysis']
             },
             link: "",
@@ -171,7 +184,7 @@ const portfolio = {
             details: "",
             tags: {
                 task: ['Data Analysis', 'Spatial Analysis', 'GIS Analysis'],
-                tools: ['Python', 'QGIS', 'SQL'],
+                tools: ['Python', 'QGIS', 'SQL', 'PostGIS'],
                 output: ['Analysis']
             },
             link: "https://pikobar.jabarprov.go.id/transmission-potential",
@@ -187,7 +200,7 @@ const portfolio = {
             details: "",
             tags: {
                 task: ['Data Visualization'],
-                tools: [],
+                tools: ['Tableau'],
                 output: ['Dashboard']
             },
             link: "",
@@ -200,7 +213,7 @@ const portfolio = {
             details: "",
             tags: {
                 task: ['Spatial Analysis', 'GIS Analysis'],
-                tools: ['QGIS', 'SQL'],
+                tools: ['QGIS', 'SQL', 'PostGIS'],
                 output: ['Analysis']
             },
             link: "",
@@ -209,8 +222,8 @@ const portfolio = {
     ],
 
     skills: {
-        task: ['Data Analysis', 'Data Visualization', 'Product Analysis', 'GIS Analysis', 'Spatial Analysis', 'Data Management', 'Data Governance'],
-        tools: ['DBT (Data Modeling)', 'PostgreSQL', 'GCP BigQuery', 'MySQL', 'Clickhouse', 'Python', 'Pandas-Python', 'Numpy', 'ArcGIS', 'PostGIS', 'QGIS', 'Geopandas', 'Folium', 'Autocad Civil 3D', 'Tableau', 'Looker', 'Metabase', 'Power BI', 'Seaborn', 'Plotly', 'Matplotlib', 'Visual Studio Code', 'Sheets', 'SQL'],
+        task: ['Data Analysis', 'Data Visualization', 'Product Analytics', 'GIS Analysis', 'Spatial Analysis', 'Data Management', 'Data Governance'],
+        tools: ['dbt', 'PostgreSQL', 'BigQuery', 'MySQL', 'MongoDB', 'Clickhouse', 'Python', 'Pandas-Python', 'Numpy', 'ArcGIS', 'PostGIS', 'QGIS', 'Geopandas', 'Folium', 'Autocad Civil 3D', 'Tableau', 'Looker', 'Metabase', 'Power BI', 'Seaborn', 'Plotly', 'Matplotlib', 'Visual Studio Code', 'GitLab', 'Sheets', 'SQL'],
         soft: ['Analytical Thinking', 'Problem Solving', 'Communication', 'People Management', 'Time Management', 'Leadership']
     },
 

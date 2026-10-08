@@ -9,8 +9,8 @@ let selectedProject = null;
 let currentPage = 1;
 
 const PAGE_SIZE = 5;
-const TYPE_ORDER = ['Analysis', 'Dashboard', 'Article'];
-const TYPE_LABELS = { Analysis: 'Analysis', Dashboard: 'Dashboards', Article: 'Articles' };
+const TYPE_ORDER = ['Analysis', 'Dashboard', 'Article', 'Data Management'];
+const TYPE_LABELS = { Analysis: 'Analysis', Dashboard: 'Dashboards', Article: 'Articles', 'Data Management': 'Data Management' };
 
 function esc(str) {
     return String(str == null ? '' : str)
