@@ -128,29 +128,68 @@ function renderIntro() {
 
 function renderStats() {
     const years = getUniqueYears();
-    const stats = [{ value: portfolio.projects.length, label: 'Projects', type: 'all' }]
-        .concat(getTypes().map(t => ({ value: countProjects(p => p.tags.output.includes(t)), label: TYPE_LABELS[t] || t, type: t })))
-        .concat([
+    const total = portfolio.projects.length;
+    const tiles = [
+        { value: total, label: 'Projects', type: 'all' },
         { value: getTagsByCategory('tools').length, label: 'Tools' },
         { value: portfolio.profile.yearsExperience || '5+', label: 'Years', caption: years.length ? years[years.length - 1] + '–' + years[0] : '' }
-        ]);
+    ];
+    const types = getTypes()
+        .map(t => ({ type: t, label: TYPE_LABELS[t] || t, count: countProjects(p => p.tags.output.includes(t)) }))
+        .sort((a, b) => b.count - a.count || TYPE_ORDER.indexOf(a.type) - TYPE_ORDER.indexOf(b.type));
+    const max = Math.max(1, ...types.map(t => t.count));
 
-    document.getElementById('stats').innerHTML = stats.map(s => {
+    const tileHtml = tiles.map(s => {
         const inner = '<span class="stat-value">' + esc(s.value) + '</span>' +
             '<span class="stat-label">' + esc(s.label) + (s.caption ? ' <span class="stat-caption">' + esc(s.caption) + '</span>' : '') + '</span>';
         return s.type
-            ? '<button type="button" class="stat stat-action' + (s.type !== 'all' && filters.type === s.type ? ' active' : '') + '" data-type="' + s.type + '">' + inner + '</button>'
+            ? '<button type="button" class="stat stat-action" data-type="' + s.type + '">' + inner + '</button>'
             : '<div class="stat">' + inner + '</div>';
     }).join('');
 
-    document.querySelectorAll('#stats .stat-action').forEach(btn => {
-        btn.addEventListener('click', () => {
-            if (btn.dataset.type === 'all') {
-                clearAllFilters();
-            } else {
-                filters.type = filters.type === btn.dataset.type ? 'all' : btn.dataset.type;
-                refreshProjects();
-            }
+    const chartHtml = '<div class="stat type-chart">' +
+        '<div class="type-chart-head"><span class="type-chart-title">Projects by type</span>' +
+        '<span class="type-chart-note">A project can have more than one type</span></div>' +
+        '<div class="type-bars">' +
+        types.map(t => {
+            const pct = Math.round(t.count / total * 100);
+            return '<button type="button" class="type-bar-row' + (filters.type === t.type ? ' active' : '') + '" data-type="' + esc(t.type) + '"' +
+                ' data-tip="' + esc(t.label + ' · ' + t.count + ' of ' + total + ' projects (' + pct + '%)') + '"' +
+                ' aria-label="' + esc(t.label + ': ' + t.count + ' of ' + total + ' projects. Click to filter') + '"' +
+                ' aria-pressed="' + (filters.type === t.type) + '">' +
+                '<span class="type-bar-label">' + esc(t.label) + '</span>' +
+                '<span class="type-bar-track"><span class="type-bar" style="width:' + (t.count / max * 100) + '%"></span></span>' +
+                '<span class="type-bar-value">' + t.count + '</span>' +
+                '</button>';
+        }).join('') +
+        '</div><div class="chart-tooltip" role="tooltip" hidden></div></div>';
+
+    const container = document.getElementById('stats');
+    container.innerHTML = tileHtml + chartHtml;
+
+    container.querySelector('.stat-action').addEventListener('click', () => {
+        clearAllFilters();
+        scrollToIndex();
+    });
+
+    const tooltip = container.querySelector('.chart-tooltip');
+    const chart = container.querySelector('.type-chart');
+    container.querySelectorAll('.type-bar-row').forEach(row => {
+        const show = () => {
+            tooltip.textContent = row.dataset.tip;
+            tooltip.hidden = false;
+            const bar = row.querySelector('.type-bar').getBoundingClientRect();
+            const box = chart.getBoundingClientRect();
+            tooltip.style.left = Math.min(bar.right - box.left + 8, box.width - tooltip.offsetWidth - 8) + 'px';
+            tooltip.style.top = (bar.top - box.top + bar.height / 2) + 'px';
+        };
+        row.addEventListener('pointerenter', show);
+        row.addEventListener('focus', show);
+        row.addEventListener('pointerleave', () => { tooltip.hidden = true; });
+        row.addEventListener('blur', () => { tooltip.hidden = true; });
+        row.addEventListener('click', () => {
+            filters.type = filters.type === row.dataset.type ? 'all' : row.dataset.type;
+            refreshProjects();
             scrollToIndex();
         });
     });
